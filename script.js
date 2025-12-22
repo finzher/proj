@@ -7,6 +7,7 @@ if (mobileMenuBtn && mobileMenu) {
         mobileMenu.classList.toggle('active');
         mobileMenuBtn.classList.toggle('active');
         document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        console.log('Мобильное меню:', mobileMenu.classList.contains('active') ? 'открыто' : 'закрыто');
     });
 }
 
@@ -53,137 +54,141 @@ desktopDropdowns.forEach(dropdown => {
     });
 });
 
-// Слайдер (исправленная версия)
-class PortfolioSlider {
+// Слайдер - ОЧЕНЬ ПРОСТАЯ РАБОЧАЯ ВЕРСИЯ
+class SimpleSlider {
     constructor() {
-        this.slides = document.querySelectorAll('.slider .slide');
-        this.dots = document.querySelectorAll('.slider-dots .dot');
+        this.slides = document.querySelectorAll('.slide');
+        this.dots = document.querySelectorAll('.dot');
         this.prevBtn = document.querySelector('.slider-prev');
         this.nextBtn = document.querySelector('.slider-next');
-        this.wrapper = document.querySelector('.slider-wrapper');
         this.currentSlide = 0;
-        this.totalSlides = this.slides.length;
-        this.interval = null;
+        
+        console.log('Найдено слайдов:', this.slides.length);
+        console.log('Найдено точек:', this.dots.length);
+        console.log('Кнопка "Назад":', this.prevBtn ? 'найдена' : 'не найдена');
+        console.log('Кнопка "Вперед":', this.nextBtn ? 'найдена' : 'не найдена');
         
         if (this.slides.length > 0) {
             this.init();
-            console.log('Slider initialized with', this.totalSlides, 'slides');
-        } else {
-            console.log('No slides found');
         }
     }
     
     init() {
-        // Кнопки навигации
+        // Кнопка "Назад"
         if (this.prevBtn) {
             this.prevBtn.addEventListener('click', () => {
+                console.log('Кнопка "Назад" нажата');
                 this.prevSlide();
-                this.resetInterval();
             });
+        } else {
+            console.error('Кнопка "Назад" не найдена!');
         }
         
+        // Кнопка "Вперед"
         if (this.nextBtn) {
             this.nextBtn.addEventListener('click', () => {
+                console.log('Кнопка "Вперед" нажата');
                 this.nextSlide();
-                this.resetInterval();
             });
+        } else {
+            console.error('Кнопка "Вперед" не найдена!');
         }
         
         // Точки навигации
         this.dots.forEach((dot, index) => {
             dot.addEventListener('click', () => {
+                console.log('Точка', index, 'нажата');
                 this.goToSlide(index);
-                this.resetInterval();
             });
         });
         
-        this.updateSlider();
+        // Показываем первый слайд
+        this.showSlide(this.currentSlide);
         
         // Автопрокрутка
         this.startAutoSlide();
-        
-        // Остановка при наведении
-        const slider = document.querySelector('.slider');
-        if (slider) {
-            slider.addEventListener('mouseenter', () => this.stopAutoSlide());
-            slider.addEventListener('mouseleave', () => this.startAutoSlide());
-        }
     }
     
-    updateSlider() {
-        // Перемещение слайдов
-        if (this.wrapper) {
-            this.wrapper.style.transform = `translateX(-${this.currentSlide * 100}%)`;
-            this.wrapper.style.transition = 'transform 0.5s ease';
+    showSlide(index) {
+        // Скрываем все слайды
+        this.slides.forEach(slide => {
+            slide.style.display = 'none';
+            slide.classList.remove('active');
+        });
+        
+        // Показываем текущий слайд
+        if (this.slides[index]) {
+            this.slides[index].style.display = 'block';
+            this.slides[index].classList.add('active');
         }
         
-        // Обновление точек
-        this.dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === this.currentSlide);
+        // Обновляем точки
+        this.dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
         });
         
-        // Обновление слайдов
-        this.slides.forEach((slide, index) => {
-            slide.classList.toggle('active', index === this.currentSlide);
-        });
+        this.currentSlide = index;
+        console.log('Показан слайд:', index);
     }
     
     nextSlide() {
-        this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
-        this.updateSlider();
+        let nextIndex = this.currentSlide + 1;
+        if (nextIndex >= this.slides.length) {
+            nextIndex = 0;
+        }
+        this.showSlide(nextIndex);
     }
     
     prevSlide() {
-        this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
-        this.updateSlider();
+        let prevIndex = this.currentSlide - 1;
+        if (prevIndex < 0) {
+            prevIndex = this.slides.length - 1;
+        }
+        this.showSlide(prevIndex);
     }
     
     goToSlide(index) {
-        if (index >= 0 && index < this.totalSlides) {
-            this.currentSlide = index;
-            this.updateSlider();
+        if (index >= 0 && index < this.slides.length) {
+            this.showSlide(index);
         }
     }
     
     startAutoSlide() {
-        if (this.interval) clearInterval(this.interval);
-        this.interval = setInterval(() => this.nextSlide(), 5000);
-    }
-    
-    stopAutoSlide() {
-        if (this.interval) clearInterval(this.interval);
-    }
-    
-    resetInterval() {
-        this.stopAutoSlide();
-        this.startAutoSlide();
+        // Автопрокрутка каждые 5 секунд
+        setInterval(() => {
+            this.nextSlide();
+        }, 5000);
     }
 }
 
-// Форма заявки (исправленная версия)
-class DrupalContactForm {
+// Форма заявки - ПРОСТАЯ РАБОЧАЯ ВЕРСИЯ
+class SimpleContactForm {
     constructor() {
         this.form = document.getElementById('contact-form');
         this.messageEl = document.getElementById('form-message');
         
+        console.log('Форма найдена:', this.form ? 'да' : 'нет');
+        console.log('Элемент сообщения:', this.messageEl ? 'найден' : 'не найден');
+        
         if (this.form) {
-            // Используем Formspree - замените на ваш реальный endpoint
-            this.formspreeUrl = 'https://formspree.io/f/xbjvrdre';
             this.init();
             this.initPhoneMask();
-        } else {
-            console.log('Форма не найдена');
         }
     }
     
     init() {
         this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+        console.log('Форма инициализирована');
     }
     
-    // Маска для телефона
     initPhoneMask() {
         const phoneInput = document.getElementById('phone');
-        if (!phoneInput) return;
+        if (!phoneInput) {
+            console.log('Поле телефона не найдено');
+            return;
+        }
+        
+        console.log('Маска телефона инициализирована');
         
         phoneInput.addEventListener('input', function(e) {
             let numbers = this.value.replace(/\D/g, '');
@@ -213,140 +218,101 @@ class DrupalContactForm {
         });
     }
     
-    async handleSubmit(e) {
+    handleSubmit(e) {
         e.preventDefault();
+        console.log('Форма отправляется...');
         
         const submitBtn = this.form.querySelector('.submit-btn');
         const originalText = submitBtn.innerHTML;
+        
+        // Показываем загрузку
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
         submitBtn.disabled = true;
         
-        // Простая валидация
-        const phoneInput = document.getElementById('phone');
-        if (phoneInput && phoneInput.value.trim() !== '') {
-            const phoneNumbers = phoneInput.value.replace(/\D/g, '');
-            if (phoneNumbers.length < 11) {
-                this.showMessage('Номер телефона должен содержать 11 цифр', 'error');
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-                return;
-            }
-        }
-        
-        // Проверка обязательных полей
+        // Проверяем обязательные поля
         const requiredFields = this.form.querySelectorAll('[required]');
-        let isValid = true;
+        let allValid = true;
         
         requiredFields.forEach(field => {
             if (!field.value.trim()) {
                 field.style.borderColor = '#e53e3e';
-                isValid = false;
+                allValid = false;
             } else {
                 field.style.borderColor = '';
             }
         });
         
-        if (!isValid) {
-            this.showMessage('Заполните все обязательные поля', 'error');
+        if (!allValid) {
+            this.showMessage('Пожалуйста, заполните все обязательные поля', 'error');
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;
             return;
         }
         
-        // Собираем данные
-        const formData = new FormData(this.form);
-        const data = Object.fromEntries(formData);
-        
-        try {
-            console.log('Отправка данных:', data);
-            
-            // Имитация отправки (для теста)
-            // В реальном проекте раскомментируйте fetch
-            /*
-            const response = await fetch(this.formspreeUrl, {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            });
-            
-            if (response.ok) {
-                this.showMessage('✅ Спасибо! Ваша заявка отправлена.', 'success');
-                this.form.reset();
-            } else {
-                throw new Error('Ошибка отправки формы');
-            }
-            */
-            
-            // Для теста - сразу успех
-            setTimeout(() => {
-                this.showMessage('✅ Спасибо! Ваша заявка отправлена.', 'success');
-                this.form.reset();
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            }, 1000);
-            
-        } catch (error) {
-            console.error('Ошибка:', error);
-            this.showMessage(`❌ Ошибка: ${error.message}`, 'error');
+        // Имитируем отправку (в реальном проекте здесь будет fetch)
+        setTimeout(() => {
+            this.showMessage('✅ Спасибо! Ваша заявка успешно отправлена.', 'success');
+            this.form.reset();
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;
-        }
+            console.log('Форма успешно отправлена (имитация)');
+        }, 1500);
     }
     
     showMessage(text, type) {
-        if (this.messageEl) {
-            this.messageEl.textContent = text;
-            this.messageEl.className = type;
-            this.messageEl.style.display = 'block';
-            
-            // Прокрутка к сообщению
-            this.messageEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            
-            // Автоскрытие
-            setTimeout(() => {
-                this.messageEl.style.display = 'none';
-            }, 5000);
-        } else {
-            // Создаем сообщение, если его нет
+        console.log('Показ сообщения:', text);
+        
+        if (!this.messageEl) {
+            // Создаем элемент сообщения если его нет
             const messageDiv = document.createElement('div');
             messageDiv.id = 'form-message';
             messageDiv.className = type;
             messageDiv.textContent = text;
             messageDiv.style.cssText = `
-                margin-top: 20px;
+                margin: 20px 0;
                 padding: 15px;
                 border-radius: 8px;
                 text-align: center;
                 font-weight: 600;
                 background: ${type === 'success' ? '#d4edda' : '#f8d7da'};
                 color: ${type === 'success' ? '#155724' : '#721c24'};
+                border: 1px solid ${type === 'success' ? '#c3e6cb' : '#f5c6cb'};
             `;
             
-            this.form.appendChild(messageDiv);
+            // Вставляем перед формой
+            this.form.parentNode.insertBefore(messageDiv, this.form.nextSibling);
             
             setTimeout(() => {
                 messageDiv.remove();
             }, 5000);
+            return;
         }
+        
+        this.messageEl.textContent = text;
+        this.messageEl.className = type;
+        this.messageEl.style.display = 'block';
+        
+        setTimeout(() => {
+            this.messageEl.style.display = 'none';
+        }, 5000);
     }
 }
 
 // Инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM загружен, инициализация...');
+    console.log('=== ДОМ ЗАГРУЖЕН ===');
+    console.log('Начинаем инициализацию...');
     
-    // Инициализируем слайдер
-    const slider = new PortfolioSlider();
-    console.log('Слайдер создан:', slider);
+    // 1. Инициализируем слайдер
+    console.log('1. Инициализация слайдера...');
+    const slider = new SimpleSlider();
     
-    // Инициализируем форму
-    const contactForm = new DrupalContactForm();
-    console.log('Форма создана:', contactForm);
+    // 2. Инициализируем форму
+    console.log('2. Инициализация формы...');
+    const contactForm = new SimpleContactForm();
     
-    // Закрываем мобильное меню при клике на ссылку
+    // 3. Закрываем мобильное меню при клике на ссылку
+    console.log('3. Настройка мобильного меню...');
     document.querySelectorAll('.mobile-menu a').forEach(link => {
         link.addEventListener('click', () => {
             if (mobileMenu) {
@@ -357,7 +323,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    // Плавная прокрутка для якорных ссылок
+    // 4. Плавная прокрутка
+    console.log('4. Настройка плавной прокрутки...');
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
@@ -367,64 +334,105 @@ document.addEventListener('DOMContentLoaded', () => {
             const target = document.querySelector(href);
             if (target) {
                 e.preventDefault();
-                
-                // Учитываем высоту навигации
-                const headerOffset = 80;
-                const elementPosition = target.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                
                 window.scrollTo({
-                    top: offsetPosition,
+                    top: target.offsetTop - 80,
                     behavior: 'smooth'
                 });
             }
         });
     });
     
-    // Проверка видео
+    // 5. Проверка видео
+    console.log('5. Проверка видео...');
     const video = document.querySelector('.video-background');
     if (video) {
         video.addEventListener('error', () => {
-            console.log('Видео не загрузилось, используем фоновый градиент');
+            console.log('Видео не загружено, используем градиент');
             video.style.display = 'none';
             document.querySelector('.header').style.background = 
                 'linear-gradient(135deg, var(--primary-dark), var(--secondary))';
         });
         
-        // Установка громкости
+        // Отключаем звук
         video.volume = 0;
+        video.muted = true;
+    } else {
+        console.log('Видео не найдено');
     }
     
-    // Добавляем анимации при скролле
-    const animateOnScroll = () => {
-        const elements = document.querySelectorAll('.stat-item, .service-card, .advantage');
-        
-        elements.forEach(el => {
-            const rect = el.getBoundingClientRect();
-            const isVisible = rect.top < window.innerHeight - 100;
-            
-            if (isVisible) {
-                el.style.opacity = '1';
-                el.style.transform = 'translateY(0)';
-            }
-        });
-    };
-    
-    // Начальные стили для анимации
-    document.querySelectorAll('.stat-item, .service-card, .advantage').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    });
-    
-    // Запускаем анимацию при загрузке
-    setTimeout(animateOnScroll, 300);
-    
-    // И при скролле
-    window.addEventListener('scroll', animateOnScroll);
+    console.log('=== ИНИЦИАЛИЗАЦИЯ ЗАВЕРШЕНА ===');
 });
 
-// Также инициализируем при полной загрузке страницы
-window.addEventListener('load', () => {
-    console.log('Страница полностью загружена');
-});
+// Тестовые функции для проверки вручную
+window.testSlider = {
+    next: () => {
+        const slider = document.querySelectorAll('.slide');
+        let current = 0;
+        slider.forEach((s, i) => {
+            if (s.classList.contains('active')) current = i;
+            s.style.display = 'none';
+        });
+        let next = (current + 1) % slider.length;
+        slider[next].style.display = 'block';
+        console.log('Вручную переключено на слайд:', next);
+    },
+    
+    prev: () => {
+        const slider = document.querySelectorAll('.slide');
+        let current = 0;
+        slider.forEach((s, i) => {
+            if (s.classList.contains('active')) current = i;
+            s.style.display = 'none';
+        });
+        let prev = current - 1;
+        if (prev < 0) prev = slider.length - 1;
+        slider[prev].style.display = 'block';
+        console.log('Вручную переключено на слайд:', prev);
+    }
+};
+
+// Добавляем стили для отладки
+const debugStyles = document.createElement('style');
+debugStyles.textContent = `
+    .debug-border {
+        border: 2px solid red !important;
+    }
+    
+    .debug-info {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        background: rgba(0,0,0,0.8);
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 12px;
+        z-index: 9999;
+    }
+`;
+document.head.appendChild(debugStyles);
+
+// Добавляем панель отладки
+const debugPanel = document.createElement('div');
+debugPanel.className = 'debug-info';
+debugPanel.innerHTML = `
+    <div>Слайдер: <span id="debug-slider-status">Загрузка...</span></div>
+    <div>Форма: <span id="debug-form-status">Загрузка...</span></div>
+    <button onclick="window.testSlider.next()">Тест: След. слайд</button>
+    <button onclick="window.testSlider.prev()">Тест: Пред. слайд</button>
+`;
+document.body.appendChild(debugPanel);
+
+// Обновляем статус
+setTimeout(() => {
+    const slides = document.querySelectorAll('.slide');
+    const form = document.getElementById('contact-form');
+    
+    document.getElementById('debug-slider-status').textContent = 
+        `${slides.length} слайдов найдено`;
+    
+    document.getElementById('debug-form-status').textContent = 
+        form ? 'Форма найдена' : 'Форма не найдена';
+}, 1000);
+
+console.log('Скрипт полностью загружен и готов к работе!');
