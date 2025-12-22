@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Выставка современного искусства "Новые горизонты"</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Подключаем Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Шапка с видео -->
+    <header class="header">
+        <video autoplay muted loop playsinline class="video-background">
+            <source src="video.mp4" type="video/mp4">
+            Ваш браузер не поддерживает видео.
+        </video>
+        
+        <!-- Навигация -->
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-wrapper">
+                    <!-- Логотип -->
+                    <a href="#" class="logo">ART VISION</a>
+                    
+                    <!-- Десктоп меню -->
+                    <ul class="desktop-menu">
+                        <li><a href="#about">О выставке</a></li>
+                        <li class="has-dropdown">
+                            <a href="#">Экспозиции ▾</a>
+                            <ul class="dropdown">
+                                <li><a href="#digital">Цифровое искусство</a></li>
+                                <li><a href="#installation">Инсталляции</a></li>
+                                <li><a href="#painting">Современная живопись</a></li>
+                                <li><a href="#sculpture">Скульптура</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#program">Программа</a></li>
+                        <li><a href="#location">Локация</a></li>
+                        <li><a href="#tickets">Билеты</a></li>
+                    </ul>
+                    
+                    <!-- Кнопка мобильного меню -->
+                    <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Открыть меню">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+                
+                <!-- Мобильное меню -->
+                <ul class="mobile-menu" id="mobile-menu">
+                    <li><a href="#about">О выставке</a></li>
+                    <li class="mobile-dropdown">
+                        <a href="#" class="dropdown-toggle">Экспозиции ▾</a>
+                        <ul class="mobile-dropdown-menu">
+                            <li><a href="#digital">Цифровое искусство</a></li>
+                            <li><a href="#installation">Инсталляции</a></li>
+                            <li><a href="#painting">Современная живопись</a></li>
+                            <li><a href="#sculpture">Скульптура</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#program">Программа</a></li>
+                    <li><a href="#location">Локация</a></li>
+                    <li><a href="#tickets">Билеты</a></li>
+                </ul>
+            </div>
+        </nav>
+        
+        <!-- Заголовок -->
+        <div class="header-content">
+            <h1>Выставка современного искусства</h1>
+            <p class="subtitle">"Новые горизонты" — где традиции встречаются с инновациями</p>
+            <p class="date"><i class="far fa-calendar-alt"></i> 15-30 декабря 2024</p>
+            <p class="format"><i class="fas fa-map-marker-alt"></i> Москва, ЦВЗ "Манеж"</p>
+            <p class="time"><i class="far fa-clock"></i> Ежедневно 11:00-21:00</p>
+            <a href="#tickets" class="btn">Купить билет онлайн</a>
+        </div>
+    </header>
+
+    <!-- О выставке -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <h2>О выставке</h2>
+            <div class="about-content">
+                <p class="intro-text">"Новые горизонты" — это масштабная выставка, представляющая лучшие образцы современного искусства России и мира. Более 100 работ от ведущих художников нашего времени.</p>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">100+</div>
+                        <div class="stat-text">работ</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">30+</div>
+                        <div class="stat-text">художников</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">4</div>
+                        <div class="stat-text">тематических зала</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">15</div>
+                        <div class="stat-text">дней работы</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Слайдер с экспонатами -->
+    <section class="slider-section" id="program">
+        <div class="container">
+            <h2>Знаковые работы выставки</h2>
+            <div class="slider">
+                <div class="slider-wrapper">
+                    <!-- Слайд 1 -->
+                    <div class="slide active">
+                        <div class="artwork-image">
+                            <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Абстрактная композиция">
+                        </div>
+                        <div class="slide-content">
+                            <div class="artwork-category">ЦИФРОВОЕ ИСКУССТВО</div>
+                            <h3>"Квантовая гармония"</h3>
+                            <p class="artwork-description">Интерактивная цифровая инсталляция, реагирующая на движение зрителей. Сочетание генеративного искусства и нейросетей.</p>
+                            <div class="artwork-details">
+                                <span><i class="far fa-calendar"></i> 2024</span>
+                                <span><i class="fas fa-expand-arrows-alt"></i> Размер: переменный</span>
+                                <span><i class="fas fa-palette"></i> Техника: projection mapping</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Слайд 2 -->
+                    <div class="slide">
+                        <div class="artwork-image">
+                            <img src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Современная скульптура">
+                        </div>
+                        <div class="slide-content">
+                            <div class="artwork-category">СКУЛЬПТУРА</div>
+                            <h3>"Диалог с пространством"</h3>
+                            <p class="artwork-description">Кинетическая скульптура из нержавеющей стали и оптического стекла. Меняет форму под воздействием света.</p>
+                            <div class="artwork-details">
+                                <span><i class="far fa-calendar"></i> 2023</span>
+                                <span><i class="fas fa-expand-arrows-alt"></i> 250×150×120 см</span>
+                                <span><i class="fas fa-palette"></i> Материалы: сталь, стекло</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Слайд 3 -->
+                    <div class="slide">
+                        <div class="artwork-image">
+                            <img src="https://images.unsplash.com/photo-1543857778-c4a1a569e388?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Современная живопись">
+                        </div>
+                        <div class="slide-content">
+                            <div class="artwork-category">ЖИВОПИСЬ</div>
+                            <h3>"Городские ритмы"</h3>
+                            <p class="artwork-description">Масло и акрил на холсте. Исследование урбанистических пейзажей через призму геометрической абстракции.</p>
+                            <div class="artwork-details">
+                                <span><i class="far fa-calendar"></i> 2022</span>
+                                <span><i class="fas fa-expand-arrows-alt"></i> 180×120 см</span>
+                                <span><i class="fas fa-palette"></i> Техника: масло, акрил</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="slider-prev" aria-label="Предыдущий слайд">‹</button>
+                <button class="slider-next" aria-label="Следующий слайд">›</button>
+                <div class="slider-dots">
+                    <button class="dot active" aria-label="Слайд 1"></button>
+                    <button class="dot" aria-label="Слайд 2"></button>
+                    <button class="dot" aria-label="Слайд 3"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Тематические залы -->
+    <section class="halls-section">
+        <div class="container">
+            <h2>Тематические залы</h2>
+            <div class="halls-grid">
+                <div class="hall-card" id="digital">
+                    <div class="hall-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Цифровое искусство</h3>
+                    <p>VR/AR инсталляции, генеративное искусство, интерактивные проекции</p>
+                    <div class="hall-count">25 работ</div>
+                </div>
+                
+                <div class="hall-card" id="installation">
+                    <div class="hall-icon">
+                        <i class="fas fa-cubes"></i>
+                    </div>
+                    <h3>Пространственные инсталляции</h3>
+                    <p>Световые, звуковые и кинетические инсталляции</p>
+                    <div class="hall-count">15 работ</div>
+                </div>
+                
+                <div class="hall-card" id="painting">
+                    <div class="hall-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>Современная живопись</h3>
+                    <p>Абстракция, фигуративизм, смешанные техники</p>
+                    <div class="hall-count">40 работ</div>
+                </div>
+                
+                <div class="hall-card" id="sculpture">
+                    <div class="hall-icon">
+                        <i class="fas fa-mountain"></i>
+                    </div>
+                    <h3>Скульптура и объекты</h3>
+                    <p>Традиционные и инновационные материалы, формы</p>
+                    <div class="hall-count">20 работ</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Локация -->
+    <section class="location-section" id="location">
+        <div class="container">
+            <h2>Локация</h2>
+            <div class="location-content">
+                <div class="location-info">
+                    <div class="location-card">
+                        <h3><i class="fas fa-map-marker-alt"></i> ЦВЗ "Манеж"</h3>
+                        <p class="address">Москва, Манежная площадь, 1</p>
+                        
+                        <div class="location-details">
+                            <div class="detail-item">
+                                <i class="far fa-clock"></i>
+                                <div>
+                                    <strong>Часы работы:</strong>
+                                    <p>15-30 декабря 2024</p>
+                                    <p>Ежедневно 11:00-21:00</p>
+                                    <p>Касса до 20:30</p>
+                                </div>
+                            </div>
+                            
+                            <div class="detail-item">
+                                <i class="fas fa-subway"></i>
+                                <div>
+                                    <strong>Метро:</strong>
+                                    <p>Библиотека им. Ленина</p>
+                                    <p>Александровский сад</p>
+                                    <p>Боровицкая</p>
+                                </div>
+                            </div>
+                            
+                            <div class="detail-item">
+                                <i class="fas fa-car"></i>
+                                <div>
+                                    <strong>Парковка:</strong>
+                                    <p>Подземный паркинг "Манеж"</p>
+                                    <p>250 мест, круглосуточно</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="location-map">
+                    <!-- Заглушка для карты -->
+                    <div class="map-placeholder">
+                        <i class="fas fa-map"></i>
+                        <p>Карта расположения</p>
+                        <p>ЦВЗ "Манеж", Манежная площадь</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Форма для билетов -->
+    <section class="form-section" id="tickets">
+        <div class="container">
+            <h2>Забронировать билеты</h2>
+            <div class="form-container">
+                <div class="form-info">
+                    <h3>Виды билетов</h3>
+                    
+                    <div class="ticket-options">
+                        <div class="ticket-option active" data-price="500">
+                            <div class="ticket-header">
+                                <h4>Стандартный</h4>
+                                <div class="ticket-price">500₽</div>
+                            </div>
+                            <ul class="ticket-features">
+                                <li><i class="fas fa-check"></i> Вход на выставку</li>
+                                <li><i class="fas fa-check"></i> Аудиогид (русский)</li>
+                                <li><i class="fas fa-check"></i> Буклет выставки</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="ticket-option" data-price="800">
+                            <div class="ticket-header">
+                                <h4>Расширенный</h4>
+                                <div class="ticket-price">800₽</div>
+                            </div>
+                            <ul class="ticket-features">
+                                <li><i class="fas fa-check"></i> Всё из "Стандартного"</li>
+                                <li><i class="fas fa-check"></i> Экскурсия с гидом</li>
+                                <li><i class="fas fa-check"></i> Каталог выставки</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="ticket-option" data-price="1200">
+                            <div class="ticket-header">
+                                <h4>VIP</h4>
+                                <div class="ticket-price">1200₽</div>
+                            </div>
+                            <ul class="ticket-features">
+                                <li><i class="fas fa-check"></i> Всё из "Расширенного"</li>
+                                <li><i class="fas fa-check"></i> Внеочередной вход</li>
+                                <li><i class="fas fa-check"></i> Эксклюзивный сувенир</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="total-price">
+                        <span>Итого:</span>
+                        <span id="total-price">500₽</span>
+                    </div>
+                </div>
+                
+                <div class="form-wrapper">
+                    <form id="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Имя *</label>
+                                <input type="text" id="name" name="name" required placeholder="Анна">
+                            </div>
+                            <div class="form-group">
+                                <label for="surname">Фамилия *</label>
+                                <input type="text" id="surname" name="surname" required placeholder="Иванова">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required placeholder="anna@example.com">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Телефон *</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="+7 (999) 123-45-67">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="date">Дата посещения *</label>
+                                <input type="date" id="date" name="date" required min="2024-12-15" max="2024-12-30">
+                            </div>
+                            <div class="form-group">
+                                <label for="quantity">Количество билетов *</label>
+                                <select id="quantity" name="quantity" required>
+                                    <option value="">Выберите</option>
+                                    <option value="1">1 билет</option>
+                                    <option value="2">2 билета</option>
+                                    <option value="3">3 билета</option>
+                                    <option value="4">4 билета</option>
+                                    <option value="5">5 билетов</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="ticket-type">Тип билета *</label>
+                            <select id="ticket-type" name="ticket-type" required>
+                                <option value="standard">Стандартный (500₽)</option>
+                                <option value="extended">Расширенный (800₽)</option>
+                                <option value="vip">VIP (1200₽)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="comment">Комментарий (необязательно)</label>
+                            <textarea id="comment" name="comment" rows="3" placeholder="Особые пожелания или вопросы..."></textarea>
+                        </div>
+                        
+                        <div class="form-footer">
+                            <button type="submit" class="submit-btn">
+                                <i class="fas fa-ticket-alt"></i> Забронировать билеты
+                            </button>
+                            <p class="form-note">* После бронирования билеты будут отправлены на ваш email. Оплата при входе.</p>
+                        </div>
+                        
+                        <div id="form-message"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="#" class="logo">ART VISION</a>
+                    <p>Выставка современного искусства "Новые горизонты"</p>
+                    <p>15-30 декабря 2024</p>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4>Контакты</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Москва, Манежная площадь, 1</p>
+                    <p><i class="fas fa-phone"></i> +7 (495) 123-45-67</p>
+                    <p><i class="fas fa-envelope"></i> info@artvision-expo.ru</p>
+                    <p><i class="far fa-clock"></i> 11:00-21:00 ежедневно</p>
+                </div>
+                
+                <div class="footer-social">
+                    <h4>Мы в соцсетях</h4>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="Telegram">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="VK">
+                            <i class="fab fa-vk"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2024 Выставка "Новые горизонты". Все права защищены.</p>
+                <p class="footer-note">Организатор: Фонд развития современного искусства</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
