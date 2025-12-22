@@ -1,93 +1,191 @@
-// ===== МОБИЛЬНОЕ МЕНЮ =====
-const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-const mobileMenu = document.getElementById('mobile-menu');
+// Мобильное меню
+const mobileBtn = document.getElementById('mobileBtn');
+const mobileMenu = document.getElementById('mobileMenu');
 
-if (mobileMenuBtn && mobileMenu) {
-    mobileMenuBtn.addEventListener('click', () => {
+if (mobileBtn && mobileMenu) {
+    mobileBtn.addEventListener('click', () => {
         mobileMenu.classList.toggle('active');
-        mobileMenuBtn.classList.toggle('active');
+        mobileBtn.classList.toggle('active');
+    });
+    
+    // Закрытие меню при клике на ссылку
+    document.querySelectorAll('.mobile-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            mobileBtn.classList.remove('active');
+        });
     });
 }
 
-// Закрытие мобильного меню при клике на ссылку
-document.querySelectorAll('.mobile-menu a').forEach(link => {
-    link.addEventListener('click', () => {
-        mobileMenu.classList.remove('active');
-        mobileMenuBtn.classList.remove('active');
-    });
-});
-
-// ===== ВЫПАДАЮЩЕЕ МЕНЮ ДЛЯ ДЕСКТОПА =====
-const desktopDropdowns = document.querySelectorAll('.has-dropdown');
-
-desktopDropdowns.forEach(dropdown => {
+// Выпадающее меню
+document.querySelectorAll('.dropdown').forEach(dropdown => {
     dropdown.addEventListener('mouseenter', () => {
-        const dropdownMenu = dropdown.querySelector('.dropdown');
-        if (dropdownMenu) {
-            dropdownMenu.style.opacity = '1';
-            dropdownMenu.style.visibility = 'visible';
-            dropdownMenu.style.transform = 'translateY(0)';
-        }
+        dropdown.querySelector('.dropdown-menu').style.cssText = 'opacity:1;visibility:visible;transform:translateY(0)';
     });
     
     dropdown.addEventListener('mouseleave', () => {
-        const dropdownMenu = dropdown.querySelector('.dropdown');
-        if (dropdownMenu) {
-            dropdownMenu.style.opacity = '0';
-            dropdownMenu.style.visibility = 'hidden';
-            dropdownMenu.style.transform = 'translateY(10px)';
-        }
+        dropdown.querySelector('.dropdown-menu').style.cssText = 'opacity:0;visibility:hidden;transform:translateY(10px)';
     });
 });
 
-// ===== FAQ АККОРДЕОН =====
-const faqItems = document.querySelectorAll('.faq-item');
-
-faqItems.forEach(item => {
-    const question = item.querySelector('.faq-question');
-    
-    question.addEventListener('click', () => {
-        // Закрываем все остальные вопросы
-        faqItems.forEach(otherItem => {
-            if (otherItem !== item) {
-                otherItem.classList.remove('active');
-            }
+// FAQ аккордеон
+document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-question').addEventListener('click', () => {
+        // Закрыть все остальные
+        document.querySelectorAll('.faq-item').forEach(other => {
+            if (other !== item) other.classList.remove('active');
         });
         
-        // Открываем/закрываем текущий вопрос
+        // Открыть текущий
         item.classList.toggle('active');
     });
 });
 
-// ===== ФОРМА ОБРАТНОЙ СВЯЗИ =====
-class ContactForm {
-    constructor() {
-        this.form = document.getElementById('contact-form');
-        this.messageEl = document.getElementById('form-message');
+// Слайдер портфолио
+let currentSlide = 0;
+const slides = document.querySelectorAll('.portfolio-slide');
+const dots = document.querySelectorAll('.dot');
+
+if (slides.length > 0) {
+    // Навигация по точкам
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            goToSlide(index);
+        });
+    });
+    
+    // Кнопки вперед/назад
+    document.getElementById('prevSlide')?.addEventListener('click', () => goToSlide(currentSlide - 1));
+    document.getElementById('nextSlide')?.addEventListener('click', () => goToSlide(currentSlide + 1));
+    
+    function goToSlide(n) {
+        if (n < 0) n = slides.length - 1;
+        if (n >= slides.length) n = 0;
         
-        if (this.form) {
-            // URL для тестирования формы (можно изменить на ваш сервис форм)
-            this.formspreeUrl = 'https://formspree.io/f/mgownazv';
-            this.init();
-            this.initPhoneMask();
+        currentSlide = n;
+        updateSlider();
+    }
+    
+    function updateSlider() {
+        slides.forEach((slide, index) => {
+            slide.classList.toggle('active', index === currentSlide);
+        });
+        
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentSlide);
+        });
+    }
+    
+    // Автопрокрутка
+    setInterval(() => goToSlide(currentSlide + 1), 5000);
+}
+
+// Анимация печатающегося текста
+const typingText = document.querySelector('.typing-text .typed');
+if (typingText) {
+    const texts = [
+        "Поддержка сайтов на Drupal",
+        "Разработка модулей Drupal",
+        "Аудит безопасности Drupal",
+        "Оптимизация скорости Drupal"
+    ];
+    
+    let textIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    
+    function type() {
+        const currentText = texts[textIndex];
+        
+        if (isDeleting) {
+            typingText.textContent = currentText.substring(0, charIndex - 1);
+            charIndex--;
+        } else {
+            typingText.textContent = currentText.substring(0, charIndex + 1);
+            charIndex++;
+        }
+        
+        if (!isDeleting && charIndex === currentText.length) {
+            isDeleting = true;
+            setTimeout(type, 2000);
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            textIndex = (textIndex + 1) % texts.length;
+            setTimeout(type, 500);
+        } else {
+            setTimeout(type, isDeleting ? 50 : 100);
         }
     }
     
-    init() {
-        this.form.addEventListener('submit', (e) => this.handleSubmit(e));
-    }
-    
-    // МАСКА ДЛЯ ТЕЛЕФОНА
-    initPhoneMask() {
-        const phoneInput = document.getElementById('phone');
-        if (!phoneInput) return;
+    type();
+}
+
+// Анимация кругов прогресса
+document.querySelectorAll('.circle-progress').forEach(circle => {
+    const value = parseInt(circle.dataset.value);
+    circle.style.setProperty('--progress', value);
+});
+
+// Форма обратной связи
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
         
+        const submitBtn = contactForm.querySelector('.submit-btn');
+        const originalText = submitBtn.textContent;
+        
+        // Показываем загрузку
+        submitBtn.textContent = 'Отправка...';
+        submitBtn.disabled = true;
+        
+        // Валидация телефона
+        const phoneInput = document.getElementById('phone');
+        if (phoneInput) {
+            const phone = phoneInput.value.replace(/\D/g, '');
+            if (phone.length < 10 || phone.length > 11) {
+                showMessage('Введите корректный номер телефона', 'error');
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                return;
+            }
+        }
+        
+        // Собираем данные
+        const formData = new FormData(contactForm);
+        const data = Object.fromEntries(formData);
+        
+        try {
+            // Используем Formspree для отправки
+            const response = await fetch('https://formspree.io/f/mvojgqza', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+            
+            if (response.ok) {
+                showMessage('Заявка успешно отправлена! Мы свяжемся с вами в течение часа.', 'success');
+                contactForm.reset();
+            } else {
+                throw new Error('Ошибка отправки');
+            }
+        } catch (error) {
+            showMessage('Ошибка отправки. Попробуйте еще раз.', 'error');
+        } finally {
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        }
+    });
+    
+    // Маска телефона
+    const phoneInput = document.getElementById('phone');
+    if (phoneInput) {
         phoneInput.addEventListener('input', function(e) {
             let numbers = this.value.replace(/\D/g, '');
-            
-            if (numbers.length > 11) {
-                numbers = numbers.substring(0, 11);
-            }
+            if (numbers.length > 11) numbers = numbers.substring(0, 11);
             
             let formatted = '';
             if (numbers.length > 0) {
@@ -107,173 +205,73 @@ class ContactForm {
             
             this.value = formatted;
         });
-        
-        // Запрещаем ввод букв
-        phoneInput.addEventListener('keypress', function(e) {
-            const allowedKeys = ['Backspace', 'Delete', 'Tab', 'ArrowLeft', 'ArrowRight', 'Home', 'End'];
-            
-            if (allowedKeys.includes(e.key)) {
-                return;
-            }
-            
-            if (!/\d/.test(e.key)) {
-                e.preventDefault();
-            }
-        });
     }
-    
-    async handleSubmit(e) {
-        e.preventDefault();
+}
+
+// Показать сообщение
+function showMessage(text, type) {
+    const messageEl = document.getElementById('formMessage');
+    if (messageEl) {
+        messageEl.textContent = text;
+        messageEl.className = 'form-message ' + type;
+        messageEl.style.display = 'block';
         
-        // Показываем загрузку
-        const submitBtn = this.form.querySelector('.submit-btn');
-        const originalText = submitBtn.textContent;
-        submitBtn.textContent = 'Отправка...';
-        submitBtn.disabled = true;
+        setTimeout(() => {
+            messageEl.style.display = 'none';
+        }, 5000);
+    }
+}
+
+// Плавная прокрутка для якорных ссылок
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
         
-        // Валидация телефона
-        const phoneInput = document.getElementById('phone');
-        if (phoneInput && phoneInput.value.trim() !== '') {
-            const phoneNumbers = phoneInput.value.replace(/\D/g, '');
-            if (phoneNumbers.length < 10 || phoneNumbers.length > 11) {
-                this.showMessage('Номер телефона должен содержать 10-11 цифр', 'error');
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-                return;
-            }
-        }
-        
-        // Собираем данные формы
-        const formData = new FormData(this.form);
-        const data = Object.fromEntries(formData);
-        
-        // Добавляем дополнительную информацию
-        data._subject = 'Новая заявка с сайта Drupal-coder';
-        data._replyto = data.email;
-        
-        try {
-            const response = await fetch(this.formspreeUrl, {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
+        const target = document.querySelector(href);
+        if (target) {
+            e.preventDefault();
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
             });
-            
-            if (response.ok) {
-                this.showMessage('Заявка успешно отправлена! Наш менеджер свяжется с вами в течение 2 часов.', 'success');
-                this.form.reset();
-            } else {
-                throw new Error('Ошибка отправки формы');
-            }
-        } catch (error) {
-            this.showMessage(`Ошибка: ${error.message}. Попробуйте еще раз.`, 'error');
-        } finally {
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-        }
-    }
-    
-    showMessage(text, type) {
-        if (this.messageEl) {
-            this.messageEl.textContent = text;
-            this.messageEl.className = type;
-            this.messageEl.style.display = 'block';
-            
-            setTimeout(() => {
-                this.messageEl.style.display = 'none';
-            }, 5000);
-        }
-    }
-}
-
-// ===== ПЛАВНАЯ ПРОКРУТКА =====
-function initSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            
-            if (href === '#' || href === '#!') return;
-            
-            const target = document.querySelector(href);
-            if (target) {
-                e.preventDefault();
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-}
-
-// ===== ИНИЦИАЛИЗАЦИЯ ПРИ ЗАГРУЗКЕ СТРАНИЦЫ =====
-document.addEventListener('DOMContentLoaded', () => {
-    // Инициализируем форму
-    new ContactForm();
-    
-    // Инициализируем плавную прокрутку
-    initSmoothScroll();
-    
-    // Обработка ошибки видео
-    const video = document.querySelector('.video-background');
-    if (video) {
-        video.addEventListener('error', () => {
-            console.log('Видео не загрузилось, используем фоновый градиент');
-            video.style.display = 'none';
-            document.querySelector('.header').style.background = 
-                'linear-gradient(135deg, #3498db, #2c3e50)';
-        });
-    }
-    
-    // Фиксированная навигация при скролле
-    window.addEventListener('scroll', () => {
-        const navbar = document.querySelector('.navbar');
-        if (window.scrollY > 100) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
         }
     });
 });
 
-// ===== ЗАПОЛНЕНИЕ ЧИСЛОВЫХ БЛОКОВ АНИМАЦИЕЙ =====
-function animateNumbers() {
-    const statNumbers = document.querySelectorAll('.stat-number');
-    
-    statNumbers.forEach(stat => {
-        const target = parseInt(stat.textContent);
-        const increment = target / 50;
-        let current = 0;
-        
-        const timer = setInterval(() => {
-            current += increment;
-            if (current >= target) {
-                current = target;
-                clearInterval(timer);
-            }
-            stat.textContent = Math.floor(current) + (stat.textContent.includes('+') ? '+' : '');
-        }, 30);
-    });
-}
+// Фиксированная навигация при скролле
+window.addEventListener('scroll', () => {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 100) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
 
-// Запускаем анимацию чисел при скролле
-const observerOptions = {
-    threshold: 0.5
-};
-
+// Анимация чисел при появлении
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            animateNumbers();
-            observer.unobserve(entry.target);
+            entry.target.classList.add('animate');
         }
     });
-}, observerOptions);
+}, { threshold: 0.5 });
 
-// Наблюдаем за секцией статистики
-const statsSection = document.querySelector('.stats');
-if (statsSection) {
-    observer.observe(statsSection);
+// Наблюдаем за элементами с анимацией
+document.querySelectorAll('.circle-progress, .stat-number').forEach(el => {
+    observer.observe(el);
+});
+
+// Обработка ошибки видео
+const video = document.querySelector('.video-background');
+if (video) {
+    video.addEventListener('error', () => {
+        document.querySelector('.header').style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+    });
 }
+
+// Инициализация при загрузке
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('Drupal-coder project loaded');
+});
