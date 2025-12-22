@@ -1,191 +1,162 @@
 // Мобильное меню
-const mobileBtn = document.getElementById('mobileBtn');
-const mobileMenu = document.getElementById('mobileMenu');
+const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
 
-if (mobileBtn && mobileMenu) {
-    mobileBtn.addEventListener('click', () => {
+if (mobileMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener('click', () => {
         mobileMenu.classList.toggle('active');
-        mobileBtn.classList.toggle('active');
-    });
-    
-    // Закрытие меню при клике на ссылку
-    document.querySelectorAll('.mobile-menu a').forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-            mobileBtn.classList.remove('active');
-        });
+        mobileMenuBtn.classList.toggle('active');
+        document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
     });
 }
 
-// Выпадающее меню
-document.querySelectorAll('.dropdown').forEach(dropdown => {
+// Мобильные выпадающие меню
+const mobileDropdowns = document.querySelectorAll('.mobile-dropdown');
+
+mobileDropdowns.forEach(dropdown => {
+    const toggle = dropdown.querySelector('.dropdown-toggle');
+    const menu = dropdown.querySelector('.mobile-dropdown-menu');
+    
+    if (toggle && menu) {
+        toggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            menu.classList.toggle('active');
+            
+            // Закрытие других открытых меню
+            mobileDropdowns.forEach(other => {
+                if (other !== dropdown) {
+                    other.querySelector('.mobile-dropdown-menu').classList.remove('active');
+                }
+            });
+        });
+    }
+});
+
+// Десктоп выпадающее меню
+const desktopDropdowns = document.querySelectorAll('.has-dropdown');
+
+desktopDropdowns.forEach(dropdown => {
     dropdown.addEventListener('mouseenter', () => {
-        dropdown.querySelector('.dropdown-menu').style.cssText = 'opacity:1;visibility:visible;transform:translateY(0)';
+        const dropdownMenu = dropdown.querySelector('.dropdown');
+        if (dropdownMenu) {
+            dropdownMenu.style.opacity = '1';
+            dropdownMenu.style.visibility = 'visible';
+            dropdownMenu.style.transform = 'translateY(0)';
+        }
     });
     
     dropdown.addEventListener('mouseleave', () => {
-        dropdown.querySelector('.dropdown-menu').style.cssText = 'opacity:0;visibility:hidden;transform:translateY(10px)';
+        const dropdownMenu = dropdown.querySelector('.dropdown');
+        if (dropdownMenu) {
+            dropdownMenu.style.opacity = '0';
+            dropdownMenu.style.visibility = 'hidden';
+            dropdownMenu.style.transform = 'translateY(-15px)';
+        }
     });
 });
 
-// FAQ аккордеон
-document.querySelectorAll('.faq-item').forEach(item => {
-    item.querySelector('.faq-question').addEventListener('click', () => {
-        // Закрыть все остальные
-        document.querySelectorAll('.faq-item').forEach(other => {
-            if (other !== item) other.classList.remove('active');
-        });
+// Слайдер
+class Slider {
+    constructor() {
+        this.slides = document.querySelectorAll('.slide');
+        this.dots = document.querySelectorAll('.dot');
+        this.prevBtn = document.querySelector('.slider-prev');
+        this.nextBtn = document.querySelector('.slider-next');
+        this.currentSlide = 0;
         
-        // Открыть текущий
-        item.classList.toggle('active');
-    });
-});
-
-// Слайдер портфолио
-let currentSlide = 0;
-const slides = document.querySelectorAll('.portfolio-slide');
-const dots = document.querySelectorAll('.dot');
-
-if (slides.length > 0) {
-    // Навигация по точкам
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            goToSlide(index);
-        });
-    });
-    
-    // Кнопки вперед/назад
-    document.getElementById('prevSlide')?.addEventListener('click', () => goToSlide(currentSlide - 1));
-    document.getElementById('nextSlide')?.addEventListener('click', () => goToSlide(currentSlide + 1));
-    
-    function goToSlide(n) {
-        if (n < 0) n = slides.length - 1;
-        if (n >= slides.length) n = 0;
-        
-        currentSlide = n;
-        updateSlider();
-    }
-    
-    function updateSlider() {
-        slides.forEach((slide, index) => {
-            slide.classList.toggle('active', index === currentSlide);
-        });
-        
-        dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === currentSlide);
-        });
-    }
-    
-    // Автопрокрутка
-    setInterval(() => goToSlide(currentSlide + 1), 5000);
-}
-
-// Анимация печатающегося текста
-const typingText = document.querySelector('.typing-text .typed');
-if (typingText) {
-    const texts = [
-        "Поддержка сайтов на Drupal",
-        "Разработка модулей Drupal",
-        "Аудит безопасности Drupal",
-        "Оптимизация скорости Drupal"
-    ];
-    
-    let textIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    
-    function type() {
-        const currentText = texts[textIndex];
-        
-        if (isDeleting) {
-            typingText.textContent = currentText.substring(0, charIndex - 1);
-            charIndex--;
-        } else {
-            typingText.textContent = currentText.substring(0, charIndex + 1);
-            charIndex++;
-        }
-        
-        if (!isDeleting && charIndex === currentText.length) {
-            isDeleting = true;
-            setTimeout(type, 2000);
-        } else if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            textIndex = (textIndex + 1) % texts.length;
-            setTimeout(type, 500);
-        } else {
-            setTimeout(type, isDeleting ? 50 : 100);
+        if (this.slides.length > 0) {
+            this.init();
         }
     }
     
-    type();
-}
-
-// Анимация кругов прогресса
-document.querySelectorAll('.circle-progress').forEach(circle => {
-    const value = parseInt(circle.dataset.value);
-    circle.style.setProperty('--progress', value);
-});
-
-// Форма обратной связи
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-    contactForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        const submitBtn = contactForm.querySelector('.submit-btn');
-        const originalText = submitBtn.textContent;
-        
-        // Показываем загрузку
-        submitBtn.textContent = 'Отправка...';
-        submitBtn.disabled = true;
-        
-        // Валидация телефона
-        const phoneInput = document.getElementById('phone');
-        if (phoneInput) {
-            const phone = phoneInput.value.replace(/\D/g, '');
-            if (phone.length < 10 || phone.length > 11) {
-                showMessage('Введите корректный номер телефона', 'error');
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-                return;
-            }
+    init() {
+        if (this.prevBtn) {
+            this.prevBtn.addEventListener('click', () => this.prevSlide());
         }
         
-        // Собираем данные
-        const formData = new FormData(contactForm);
-        const data = Object.fromEntries(formData);
+        if (this.nextBtn) {
+            this.nextBtn.addEventListener('click', () => this.nextSlide());
+        }
         
-        try {
-            // Используем Formspree для отправки
-            const response = await fetch('https://formspree.io/f/mvojgqza', {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
+        this.dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => this.goToSlide(index));
+        });
+        
+        this.updateSlider();
+        
+        // Автопрокрутка
+        this.interval = setInterval(() => this.nextSlide(), 6000);
+        
+        // Остановка при наведении
+        const slider = document.querySelector('.slider');
+        if (slider) {
+            slider.addEventListener('mouseenter', () => clearInterval(this.interval));
+            slider.addEventListener('mouseleave', () => {
+                this.interval = setInterval(() => this.nextSlide(), 6000);
             });
-            
-            if (response.ok) {
-                showMessage('Заявка успешно отправлена! Мы свяжемся с вами в течение часа.', 'success');
-                contactForm.reset();
-            } else {
-                throw new Error('Ошибка отправки');
-            }
-        } catch (error) {
-            showMessage('Ошибка отправки. Попробуйте еще раз.', 'error');
-        } finally {
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
         }
-    });
+    }
     
-    // Маска телефона
-    const phoneInput = document.getElementById('phone');
-    if (phoneInput) {
+    updateSlider() {
+        const wrapper = document.querySelector('.slider-wrapper');
+        if (wrapper) {
+            wrapper.style.transform = `translateX(-${this.currentSlide * 100}%)`;
+        }
+        
+        this.dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === this.currentSlide);
+        });
+        
+        this.slides.forEach((slide, index) => {
+            slide.classList.toggle('active', index === this.currentSlide);
+        });
+    }
+    
+    nextSlide() {
+        this.currentSlide = (this.currentSlide + 1) % this.slides.length;
+        this.updateSlider();
+    }
+    
+    prevSlide() {
+        this.currentSlide = (this.currentSlide - 1 + this.slides.length) % this.slides.length;
+        this.updateSlider();
+    }
+    
+    goToSlide(index) {
+        this.currentSlide = index;
+        this.updateSlider();
+    }
+}
+
+// Форма заявки
+class ContactForm {
+    constructor() {
+        this.form = document.getElementById('contact-form');
+        this.messageEl = document.getElementById('form-message');
+        
+        if (this.form) {
+            // Используем Formspree (замените на ваш endpoint)
+            this.formspreeUrl = 'https://formspree.io/f/xbjvrdre';
+            this.init();
+            this.initPhoneMask();
+        }
+    }
+    
+    init() {
+        this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+    }
+    
+    // Маска для телефона
+    initPhoneMask() {
+        const phoneInput = document.getElementById('phone');
+        if (!phoneInput) return;
+        
         phoneInput.addEventListener('input', function(e) {
             let numbers = this.value.replace(/\D/g, '');
-            if (numbers.length > 11) numbers = numbers.substring(0, 11);
+            
+            if (numbers.length > 11) {
+                numbers = numbers.substring(0, 11);
+            }
             
             let formatted = '';
             if (numbers.length > 0) {
@@ -205,73 +176,158 @@ if (contactForm) {
             
             this.value = formatted;
         });
-    }
-}
-
-// Показать сообщение
-function showMessage(text, type) {
-    const messageEl = document.getElementById('formMessage');
-    if (messageEl) {
-        messageEl.textContent = text;
-        messageEl.className = 'form-message ' + type;
-        messageEl.style.display = 'block';
         
-        setTimeout(() => {
-            messageEl.style.display = 'none';
-        }, 5000);
-    }
-}
-
-// Плавная прокрутка для якорных ссылок
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        const href = this.getAttribute('href');
-        if (href === '#') return;
+        phoneInput.addEventListener('keypress', function(e) {
+            const allowedKeys = ['Backspace', 'Delete', 'Tab', 'ArrowLeft', 'ArrowRight', 'Home', 'End'];
+            
+            if (allowedKeys.includes(e.key)) return;
+            
+            if (!/\d/.test(e.key)) {
+                e.preventDefault();
+            }
+        });
         
-        const target = document.querySelector(href);
-        if (target) {
+        phoneInput.addEventListener('paste', function(e) {
             e.preventDefault();
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
-
-// Фиксированная навигация при скролле
-window.addEventListener('scroll', () => {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 100) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
+            const pastedText = e.clipboardData.getData('text');
+            const numbers = pastedText.replace(/\D/g, '').substring(0, 11);
+            this.value = numbers;
+            this.dispatchEvent(new Event('input'));
+        });
     }
-});
-
-// Анимация чисел при появлении
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('animate');
+    
+    async handleSubmit(e) {
+        e.preventDefault();
+        
+        const submitBtn = this.form.querySelector('.submit-btn');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
+        submitBtn.disabled = true;
+        
+        // Валидация телефона
+        const phoneInput = document.getElementById('phone');
+        if (phoneInput && phoneInput.value.trim() !== '') {
+            const phoneNumbers = phoneInput.value.replace(/\D/g, '');
+            if (phoneNumbers.length < 10 || phoneNumbers.length > 11) {
+                this.showMessage('Номер телефона должен содержать 10-11 цифр', 'error');
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                return;
+            }
         }
-    });
-}, { threshold: 0.5 });
-
-// Наблюдаем за элементами с анимацией
-document.querySelectorAll('.circle-progress, .stat-number').forEach(el => {
-    observer.observe(el);
-});
-
-// Обработка ошибки видео
-const video = document.querySelector('.video-background');
-if (video) {
-    video.addEventListener('error', () => {
-        document.querySelector('.header').style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
-    });
+        
+        // Собираем данные
+        const formData = new FormData(this.form);
+        const data = Object.fromEntries(formData);
+        
+        try {
+            const response = await fetch(this.formspreeUrl, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+            
+            if (response.ok) {
+                this.showMessage('✅ Спасибо! Ваша заявка отправлена. Мы свяжемся с вами в течение 24 часов.', 'success');
+                this.form.reset();
+            } else {
+                throw new Error('Ошибка отправки формы');
+            }
+        } catch (error) {
+            this.showMessage(`❌ Ошибка: ${error.message}. Пожалуйста, попробуйте еще раз.`, 'error');
+        } finally {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }
+    }
+    
+    showMessage(text, type) {
+        if (this.messageEl) {
+            this.messageEl.textContent = text;
+            this.messageEl.className = type;
+            this.messageEl.style.display = 'block';
+            
+            setTimeout(() => {
+                this.messageEl.style.display = 'none';
+            }, 5000);
+        }
+    }
 }
 
-// Инициализация при загрузке
+// Инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('Drupal-coder project loaded');
+    // Инициализируем слайдер
+    new Slider();
+    
+    // Инициализируем форму
+    new ContactForm();
+    
+    // Закрываем мобильное меню при клике на ссылку
+    document.querySelectorAll('.mobile-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (mobileMenu) {
+                mobileMenu.classList.remove('active');
+                mobileMenuBtn.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    });
+    
+    // Плавная прокрутка
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            
+            if (href === '#' || href === '#!') return;
+            
+            const target = document.querySelector(href);
+            if (target) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: target.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+    
+    // Проверка видео
+    const video = document.querySelector('.video-background');
+    if (video) {
+        video.addEventListener('error', () => {
+            console.log('Видео не загрузилось, используем градиентный фон');
+            video.style.display = 'none';
+            document.querySelector('.header').style.background = 
+                'linear-gradient(135deg, var(--primary-dark), var(--secondary))';
+        });
+        
+        // Управление громкостью (если нужно)
+        video.volume = 0;
+    }
+    
+    // Анимация появления элементов при скролле
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+    
+    // Наблюдаем за элементами с анимацией
+    document.querySelectorAll('.stat-item, .service-card, .advantage').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        observer.observe(el);
+    });
 });
