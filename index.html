@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Выставка современного искусства "Новые горизонты"</title>
+    <title>Drupal-coder - Профессиональная поддержка сайтов на Drupal</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Подключаем Montserrat -->
+    <!-- Подключаем Montserrat как указано в fonts.txt -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -20,28 +20,29 @@
             Ваш браузер не поддерживает видео.
         </video>
         
-        <!-- Навигация -->
+        <!-- Навигация как в menu.png -->
         <nav class="navbar">
             <div class="container">
                 <div class="nav-wrapper">
-                    <!-- Логотип -->
-                    <a href="#" class="logo">ART VISION</a>
+                    <!-- Логотип Drupal-coder -->
+                    <a href="#" class="logo">DRUPAL-CODER</a>
                     
-                    <!-- Десктоп меню -->
+                    <!-- Десктоп меню ТОЧНО как в menu.png -->
                     <ul class="desktop-menu">
-                        <li><a href="#about">О выставке</a></li>
                         <li class="has-dropdown">
-                            <a href="#">Экспозиции ▾</a>
+                            <a href="#">АДМИНИСТРИРОВАНИЕ ▾</a>
                             <ul class="dropdown">
-                                <li><a href="#digital">Цифровое искусство</a></li>
-                                <li><a href="#installation">Инсталляции</a></li>
-                                <li><a href="#painting">Современная живопись</a></li>
-                                <li><a href="#sculpture">Скульптура</a></li>
+                                <li><a href="#services">Настройка серверов</a></li>
+                                <li><a href="#services">Обновление Drupal</a></li>
+                                <li><a href="#services">Мониторинг</a></li>
                             </ul>
                         </li>
-                        <li><a href="#program">Программа</a></li>
-                        <li><a href="#location">Локация</a></li>
-                        <li><a href="#tickets">Билеты</a></li>
+                        <li><a href="#services">ПРОДВИЖЕНИЕ</a></li>
+                        <li><a href="#services">МИГРАЦИЯ</a></li>
+                        <li><a href="#services">БЭКАПЫ</a></li>
+                        <li><a href="#services">АУДИТ БЕЗОПАСНОСТИ</a></li>
+                        <li><a href="#services">ОПТИМИЗАЦИЯ СКОРОСТИ</a></li>
+                        <li><a href="#services">ПЕРЕЕЗД НА HTTPS</a></li>
                     </ul>
                     
                     <!-- Кнопка мобильного меню -->
@@ -52,349 +53,424 @@
                     </button>
                 </div>
                 
-                <!-- Мобильное меню -->
+                <!-- Мобильное меню как в mobile-menu.png -->
                 <ul class="mobile-menu" id="mobile-menu">
-                    <li><a href="#about">О выставке</a></li>
-                    <li class="mobile-dropdown">
-                        <a href="#" class="dropdown-toggle">Экспозиции ▾</a>
-                        <ul class="mobile-dropdown-menu">
-                            <li><a href="#digital">Цифровое искусство</a></li>
-                            <li><a href="#installation">Инсталляции</a></li>
-                            <li><a href="#painting">Современная живопись</a></li>
-                            <li><a href="#sculpture">Скульптура</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#program">Программа</a></li>
-                    <li><a href="#location">Локация</a></li>
-                    <li><a href="#tickets">Билеты</a></li>
+                    <li><a href="#support">Поддержка сайтов на Drupal</a></li>
+                    <li><a href="#services">АДМИНИСТРИРОВАНИЕ</a></li>
+                    <li><a href="#services">ПРОДВИЖЕНИЕ</a></li>
+                    <li><a href="#services">РЕКЛАМА</a></li>
+                    <li><a href="#about">О НАС</a></li>
+                    <li><a href="#team">КОМАНДА</a></li>
+                    <li><a href="#blog">БЛОГ</a></li>
+                    <li><a href="#courses">КУРСЫ DRUPAL</a></li>
+                    <li><a href="#projects">ПРОЕКТЫ</a></li>
+                    <li><a href="#contact">КОНТАКТЫ</a></li>
                 </ul>
             </div>
         </nav>
         
-        <!-- Заголовок -->
+        <!-- Заголовок как в макете -->
         <div class="header-content">
-            <h1>Выставка современного искусства</h1>
-            <p class="subtitle">"Новые горизонты" — где традиции встречаются с инновациями</p>
-            <p class="date"><i class="far fa-calendar-alt"></i> 15-30 декабря 2024</p>
-            <p class="format"><i class="fas fa-map-marker-alt"></i> Москва, ЦВЗ "Манеж"</p>
-            <p class="time"><i class="far fa-clock"></i> Ежедневно 11:00-21:00</p>
-            <a href="#tickets" class="btn">Купить билет онлайн</a>
+            <h1>Поддержка сайтов на Drupal</h1>
+            <p class="subtitle">13 лет совершенствуем компетенции в Drupal поддержке!</p>
+            <p class="experience"><i class="fas fa-trophy"></i> 14 лет экспертизы в Drupal</p>
+            <p class="clients"><i class="fas fa-users"></i> Более 100 довольных клиентов</p>
+            <p class="projects"><i class="fas fa-briefcase"></i> 500+ успешных проектов</p>
+            <a href="#contact" class="btn">ПОДДЕРЖКА DRUPAL</a>
         </div>
     </header>
 
-    <!-- О выставке -->
-    <section class="about-section" id="about">
+    <!-- Блок "Поддержка сайтов на Drupal" -->
+    <section class="support-section" id="support">
         <div class="container">
-            <h2>О выставке</h2>
-            <div class="about-content">
-                <p class="intro-text">"Новые горизонты" — это масштабная выставка, представляющая лучшие образцы современного искусства России и мира. Более 100 работ от ведущих художников нашего времени.</p>
+            <h2>Поддержка сайтов на Drupal</h2>
+            <div class="support-content">
+                <p class="intro-text">Разрабатываем и оптимизируем модули, расширяем функциональность сайтов, обновляем дизайн.</p>
                 
-                <div class="stats">
-                    <div class="stat-item">
-                        <div class="stat-number">100+</div>
-                        <div class="stat-text">работ</div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>Разработка модулей</h3>
+                        <p>Создание и оптимизация модулей сайта, расширение функциональности.</p>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number">30+</div>
-                        <div class="stat-text">художников</div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <h3>Миграция данных</h3>
+                        <p>Импорт контента и данных в Drupal из любых источников.</p>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number">4</div>
-                        <div class="stat-text">тематических зала</div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Аудит безопасности</h3>
+                        <p>Полная проверка безопасности Drupal-сайтов и устранение уязвимостей.</p>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number">15</div>
-                        <div class="stat-text">дней работы</div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Оптимизация скорости</h3>
+                        <p>Ускорение загрузки Drupal-сайтов для улучшения пользовательского опыта.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Слайдер с экспонатами -->
-    <section class="slider-section" id="program">
+    <!-- Блок "Поддержка от Drupal-coder" (8 преимуществ) -->
+    <section class="advantages-section" id="services">
         <div class="container">
-            <h2>Знаковые работы выставки</h2>
-            <div class="slider">
-                <div class="slider-wrapper">
-                    <!-- Слайд 1 -->
-                    <div class="slide active">
-                        <div class="artwork-image">
-                            <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Абстрактная композиция">
-                        </div>
-                        <div class="slide-content">
-                            <div class="artwork-category">ЦИФРОВОЕ ИСКУССТВО</div>
-                            <h3>"Квантовая гармония"</h3>
-                            <p class="artwork-description">Интерактивная цифровая инсталляция, реагирующая на движение зрителей. Сочетание генеративного искусства и нейросетей.</p>
-                            <div class="artwork-details">
-                                <span><i class="far fa-calendar"></i> 2024</span>
-                                <span><i class="fas fa-expand-arrows-alt"></i> Размер: переменный</span>
-                                <span><i class="fas fa-palette"></i> Техника: projection mapping</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Слайд 2 -->
-                    <div class="slide">
-                        <div class="artwork-image">
-                            <img src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Современная скульптура">
-                        </div>
-                        <div class="slide-content">
-                            <div class="artwork-category">СКУЛЬПТУРА</div>
-                            <h3>"Диалог с пространством"</h3>
-                            <p class="artwork-description">Кинетическая скульптура из нержавеющей стали и оптического стекла. Меняет форму под воздействием света.</p>
-                            <div class="artwork-details">
-                                <span><i class="far fa-calendar"></i> 2023</span>
-                                <span><i class="fas fa-expand-arrows-alt"></i> 250×150×120 см</span>
-                                <span><i class="fas fa-palette"></i> Материалы: сталь, стекло</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Слайд 3 -->
-                    <div class="slide">
-                        <div class="artwork-image">
-                            <img src="https://images.unsplash.com/photo-1543857778-c4a1a569e388?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Современная живопись">
-                        </div>
-                        <div class="slide-content">
-                            <div class="artwork-category">ЖИВОПИСЬ</div>
-                            <h3>"Городские ритмы"</h3>
-                            <p class="artwork-description">Масло и акрил на холсте. Исследование урбанистических пейзажей через призму геометрической абстракции.</p>
-                            <div class="artwork-details">
-                                <span><i class="far fa-calendar"></i> 2022</span>
-                                <span><i class="fas fa-expand-arrows-alt"></i> 180×120 см</span>
-                                <span><i class="fas fa-palette"></i> Техника: масло, акрил</span>
-                            </div>
-                        </div>
-                    </div>
+            <h2>Поддержка от Drupal-coder</h2>
+            
+            <div class="advantages-grid">
+                <div class="advantage-card">
+                    <div class="advantage-number">01</div>
+                    <h3>Постановка задачи по Email</h3>
+                    <p>Удобная модель постановки задач, при которой задачи фиксируются и никогда не теряются.</p>
                 </div>
                 
-                <button class="slider-prev" aria-label="Предыдущий слайд">‹</button>
-                <button class="slider-next" aria-label="Следующий слайд">›</button>
-                <div class="slider-dots">
-                    <button class="dot active" aria-label="Слайд 1"></button>
-                    <button class="dot" aria-label="Слайд 2"></button>
-                    <button class="dot" aria-label="Слайд 3"></button>
+                <div class="advantage-card">
+                    <div class="advantage-number">02</div>
+                    <h3>Система Helpdesk — отчётность</h3>
+                    <p>Прозрачность и отчетность. Возможность посмотреть все заявки в работе и отработанные часы.</p>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="advantage-number">03</div>
+                    <h3>Расширенная техподдержка</h3>
+                    <p>Возможность организации расширенной техподдержки с 6:00 до 22:00 без выходных.</p>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="advantage-number">04</div>
+                    <h3>Персональный менеджер проекта</h3>
+                    <p>Ваш менеджер проекта всегда в курсе текущего состояния и готов ответить на любые вопросы.</p>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="advantage-number">05</div>
+                    <h3>Удобные способы оплаты</h3>
+                    <p>Безналичный расчет по договору или электронные деньги: WebMoney, Яндекс.Деньги, Paypal.</p>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="advantage-number">06</div>
+                    <h3>Работа с SLA и NDA</h3>
+                    <p>Работа в рамках соглашений о конфиденциальности и об уровне качества работ.</p>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="advantage-number">07</div>
+                    <h3>Штатные специалисты</h3>
+                    <p>Надежные штатные специалисты, никаких фрилансеров.</p>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="advantage-number">08</div>
+                    <h3>Удобные каналы связи</h3>
+                    <p>Консультации по телефону, скайпу, в мессенджерах.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Тематические залы -->
-    <section class="halls-section">
+    <!-- Тарифы как в макете -->
+    <section class="pricing-section">
         <div class="container">
-            <h2>Тематические залы</h2>
-            <div class="halls-grid">
-                <div class="hall-card" id="digital">
-                    <div class="hall-icon">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <h3>Цифровое искусство</h3>
-                    <p>VR/AR инсталляции, генеративное искусство, интерактивные проекции</p>
-                    <div class="hall-count">25 работ</div>
+            <h2>Тарифы</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Стартовый</h3>
+                    <div class="price">от 6 000 <span>руб./мес</span></div>
+                    <ul class="pricing-features">
+                        <li>Консультации и работы по SEO</li>
+                        <li>Услуги дизайнера</li>
+                        <li>Недозвоны включены</li>
+                        <li>Время реакции: до 2 рабочих дней</li>
+                        <li><strong>Неиспользованные часы переносятся</strong></li>
+                    </ul>
+                    <button class="btn pricing-btn">Выбрать тариф</button>
                 </div>
                 
-                <div class="hall-card" id="installation">
-                    <div class="hall-icon">
-                        <i class="fas fa-cubes"></i>
-                    </div>
-                    <h3>Пространственные инсталляции</h3>
-                    <p>Световые, звуковые и кинетические инсталляции</p>
-                    <div class="hall-count">15 работ</div>
+                <div class="pricing-card popular">
+                    <div class="popular-badge">Бизнес</div>
+                    <h3>Бизнес</h3>
+                    <div class="price">от 30 000 <span>руб./мес</span></div>
+                    <ul class="pricing-features">
+                        <li>Консультации и работы по SEO</li>
+                        <li>Услуги дизайнера</li>
+                        <li>Приоритетная поддержка</li>
+                        <li>Время реакции: высокое</li>
+                        <li><strong>Неиспользованные часы не переносятся</strong></li>
+                    </ul>
+                    <button class="btn pricing-btn">Выбрать тариф</button>
                 </div>
                 
-                <div class="hall-card" id="painting">
-                    <div class="hall-icon">
-                        <i class="fas fa-paint-brush"></i>
-                    </div>
-                    <h3>Современная живопись</h3>
-                    <p>Абстракция, фигуративизм, смешанные техники</p>
-                    <div class="hall-count">40 работ</div>
-                </div>
-                
-                <div class="hall-card" id="sculpture">
-                    <div class="hall-icon">
-                        <i class="fas fa-mountain"></i>
-                    </div>
-                    <h3>Скульптура и объекты</h3>
-                    <p>Традиционные и инновационные материалы, формы</p>
-                    <div class="hall-count">20 работ</div>
+                <div class="pricing-card">
+                    <h3>VIP</h3>
+                    <div class="price">от 270 000 <span>руб./мес</span></div>
+                    <ul class="pricing-features">
+                        <li>Консультации и работы по SEO</li>
+                        <li>Услуги дизайнера</li>
+                        <li>Максимальный приоритет</li>
+                        <li>Время реакции: в день обращения</li>
+                        <li><strong>Неиспользованные часы не переносятся</strong></li>
+                    </ul>
+                    <button class="btn pricing-btn">Выбрать тариф</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Локация -->
-    <section class="location-section" id="location">
+    <!-- Блок "Получить индивидуальный тариф" -->
+    <section class="cta-section">
         <div class="container">
-            <h2>Локация</h2>
-            <div class="location-content">
-                <div class="location-info">
-                    <div class="location-card">
-                        <h3><i class="fas fa-map-marker-alt"></i> ЦВЗ "Манеж"</h3>
-                        <p class="address">Москва, Манежная площадь, 1</p>
-                        
-                        <div class="location-details">
-                            <div class="detail-item">
-                                <i class="far fa-clock"></i>
-                                <div>
-                                    <strong>Часы работы:</strong>
-                                    <p>15-30 декабря 2024</p>
-                                    <p>Ежедневно 11:00-21:00</p>
-                                    <p>Касса до 20:30</p>
-                                </div>
-                            </div>
-                            
-                            <div class="detail-item">
-                                <i class="fas fa-subway"></i>
-                                <div>
-                                    <strong>Метро:</strong>
-                                    <p>Библиотека им. Ленина</p>
-                                    <p>Александровский сад</p>
-                                    <p>Боровицкая</p>
-                                </div>
-                            </div>
-                            
-                            <div class="detail-item">
-                                <i class="fas fa-car"></i>
-                                <div>
-                                    <strong>Парковка:</strong>
-                                    <p>Подземный паркинг "Манеж"</p>
-                                    <p>250 мест, круглосуточно</p>
-                                </div>
-                            </div>
-                        </div>
+            <h2>Не нашли подходящий тариф?</h2>
+            <p>Оставьте заявку и мы предложим вам индивидуальные условия сотрудничества</p>
+            <a href="#contact" class="btn cta-btn">СВЯЗАТЬСЯ С НАМИ!</a>
+        </div>
+    </section>
+
+    <!-- Примеры работ -->
+    <section class="portfolio-section">
+        <div class="container">
+            <h2>Наши работы</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>Интернет-магазин</h3>
+                    <p>Настройка события GA в интернет-магазине</p>
+                    <div class="portfolio-price">от 11 000 ₽</div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Мобильная версия</h3>
+                    <p>Разработка мобильной версии сайта</p>
+                    <div class="portfolio-price">от 20 400 ₽</div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3>Модуль оплаты</h3>
+                    <p>Интеграция модуля оплаты</p>
+                    <div class="portfolio-price">от 8 400 ₽</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Команда Drupal-coder -->
+    <section class="team-section" id="team">
+        <div class="container">
+            <h2>Наша команда</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-photo">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Сергей Синица</h3>
+                    <p class="position">Руководитель отдела веб-разработки</p>
+                    <p class="details">Кандидат технических наук, заместитель директора</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-photo">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Роман Агабеков</h3>
+                    <p class="position">Руководитель отдела DevOPS</p>
+                    <p class="details">Директор</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-photo">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Алексей Синица</h3>
+                    <p class="position">Руководитель отдела поддержки сайтов</p>
+                    <p class="details">14 лет опыта работы с Drupal</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-photo">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Дарья Водолеева</h3>
+                    <p class="position">Руководитель отдела продвижения</p>
+                    <p class="details">Контекстная реклама и контент-поддержка сайтов</p>
+                </div>
+            </div>
+            
+            <div class="full-team">
+                <a href="#team" class="btn team-btn">Вся команда</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Последние кейсы -->
+    <section class="cases-section">
+        <div class="container">
+            <h2>Последние кейсы</h2>
+            <div class="cases-grid">
+                <div class="case-card">
+                    <div class="case-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Ускорение в 30 раз</h3>
+                    <p>Настройка кэширования данных, апгрейд сервера. Ускорение работы сайта в 30 раз!</p>
+                </div>
+                
+                <div class="case-card">
+                    <div class="case-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h3>Оптимизация скорости</h3>
+                    <p>Drupal 7: ускорение времени генерации страниц интернет-магазина на 32%.</p>
+                </div>
+                
+                <div class="case-card">
+                    <div class="case-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h3>Интеграция с 1С</h3>
+                    <p>Обмен товарами и заказами интернет-магазина на Drupal 7 с 1С.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Отзывы -->
+    <section class="reviews-section">
+        <div class="container">
+            <h2>Отзывы клиентов</h2>
+            <div class="review-card">
+                <div class="review-icon">
+                    <i class="fas fa-quote-left"></i>
+                </div>
+                <p class="review-text">"Обратился в Drupal-coder с проблемным сайтом. Ребята сделали полный редизайн, добавили недостающий функционал. Главное — все качественно и быстро. Спасибо команде за профессионализм!"</p>
+                <div class="review-author">
+                    <strong>Наталья Сушкова</strong>
+                    <span>Руководитель отдела веб-проектов</span>
+                </div>
+            </div>
+            
+            <div class="clients-logos">
+                <div class="logo-item">
+                    <i class="fas fa-building"></i>
+                    <span>ООО "Инжиниринг"</span>
+                </div>
+                <div class="logo-item">
+                    <i class="fas fa-home"></i>
+                    <span>СТРОЙКОМПАНИЯ</span>
+                </div>
+                <div class="logo-item">
+                    <i class="fas fa-plane"></i>
+                    <span>Japan Travel</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+        <div class="container">
+            <h2>Часто задаваемые вопросы</h2>
+            <div class="faq-container">
+                <div class="faq-item active">
+                    <div class="faq-question">
+                        <span>1. Кто непосредственно занимается поддержкой?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Сайты поддерживают штатные сотрудники ООО "Инжиниринг" г. Краснодар, прошедшие специальное обучение и имеющие опыт работы с Drupal от 4 до 15 лет: 8 веб-разработчиков, 2 специалиста по SEO, 4 системных администратора.</p>
                     </div>
                 </div>
                 
-                <div class="location-map">
-                    <!-- Заглушка для карты -->
-                    <div class="map-placeholder">
-                        <i class="fas fa-map"></i>
-                        <p>Карта расположения</p>
-                        <p>ЦВЗ "Манеж", Манежная площадь</p>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>2. Как организована работа поддержки?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Работа организована через систему Helpdesk. Все задачи ставятся через email, фиксируются и никогда не теряются. Вы всегда можете посмотреть статус выполнения любой задачи.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>3. Что происходит, когда отработаны все предоплаченные часы за месяц?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Неиспользованные оплаченные часы переносятся на следующий месяц (для тарифов Стартовый и Бизнес).</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>10. В какое время работает поддержка?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Стандартная поддержка работает в рабочее время. Также доступна расширенная техподдержка с 6:00 до 22:00 без выходных.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Форма для билетов -->
-    <section class="form-section" id="tickets">
+    <!-- Форма обратной связи -->
+    <section class="contact-section" id="contact">
         <div class="container">
-            <h2>Забронировать билеты</h2>
-            <div class="form-container">
-                <div class="form-info">
-                    <h3>Виды билетов</h3>
-                    
-                    <div class="ticket-options">
-                        <div class="ticket-option active" data-price="500">
-                            <div class="ticket-header">
-                                <h4>Стандартный</h4>
-                                <div class="ticket-price">500₽</div>
-                            </div>
-                            <ul class="ticket-features">
-                                <li><i class="fas fa-check"></i> Вход на выставку</li>
-                                <li><i class="fas fa-check"></i> Аудиогид (русский)</li>
-                                <li><i class="fas fa-check"></i> Буклет выставки</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="ticket-option" data-price="800">
-                            <div class="ticket-header">
-                                <h4>Расширенный</h4>
-                                <div class="ticket-price">800₽</div>
-                            </div>
-                            <ul class="ticket-features">
-                                <li><i class="fas fa-check"></i> Всё из "Стандартного"</li>
-                                <li><i class="fas fa-check"></i> Экскурсия с гидом</li>
-                                <li><i class="fas fa-check"></i> Каталог выставки</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="ticket-option" data-price="1200">
-                            <div class="ticket-header">
-                                <h4>VIP</h4>
-                                <div class="ticket-price">1200₽</div>
-                            </div>
-                            <ul class="ticket-features">
-                                <li><i class="fas fa-check"></i> Всё из "Расширенного"</li>
-                                <li><i class="fas fa-check"></i> Внеочередной вход</li>
-                                <li><i class="fas fa-check"></i> Эксклюзивный сувенир</li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div class="total-price">
-                        <span>Итого:</span>
-                        <span id="total-price">500₽</span>
-                    </div>
-                </div>
-                
-                <div class="form-wrapper">
-                    <form id="contact-form">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="name">Имя *</label>
-                                <input type="text" id="name" name="name" required placeholder="Анна">
-                            </div>
-                            <div class="form-group">
-                                <label for="surname">Фамилия *</label>
-                                <input type="text" id="surname" name="surname" required placeholder="Иванова">
-                            </div>
-                        </div>
-                        
+            <h2>Оставить заявку на поддержку сайта</h2>
+            <div class="contact-form-container">
+                <form id="contact-form">
+                    <div class="form-row">
                         <div class="form-group">
-                            <label for="email">Email *</label>
-                            <input type="email" id="email" name="email" required placeholder="anna@example.com">
+                            <label for="name">Ваше имя *</label>
+                            <input type="text" id="name" name="name" required placeholder="Иван Иванов">
                         </div>
-                        
                         <div class="form-group">
                             <label for="phone">Телефон *</label>
                             <input type="tel" id="phone" name="phone" required placeholder="+7 (999) 123-45-67">
                         </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="date">Дата посещения *</label>
-                                <input type="date" id="date" name="date" required min="2024-12-15" max="2024-12-30">
-                            </div>
-                            <div class="form-group">
-                                <label for="quantity">Количество билетов *</label>
-                                <select id="quantity" name="quantity" required>
-                                    <option value="">Выберите</option>
-                                    <option value="1">1 билет</option>
-                                    <option value="2">2 билета</option>
-                                    <option value="3">3 билета</option>
-                                    <option value="4">4 билета</option>
-                                    <option value="5">5 билетов</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="ticket-type">Тип билета *</label>
-                            <select id="ticket-type" name="ticket-type" required>
-                                <option value="standard">Стандартный (500₽)</option>
-                                <option value="extended">Расширенный (800₽)</option>
-                                <option value="vip">VIP (1200₽)</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="comment">Комментарий (необязательно)</label>
-                            <textarea id="comment" name="comment" rows="3" placeholder="Особые пожелания или вопросы..."></textarea>
-                        </div>
-                        
-                        <div class="form-footer">
-                            <button type="submit" class="submit-btn">
-                                <i class="fas fa-ticket-alt"></i> Забронировать билеты
-                            </button>
-                            <p class="form-note">* После бронирования билеты будут отправлены на ваш email. Оплата при входе.</p>
-                        </div>
-                        
-                        <div id="form-message"></div>
-                    </form>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required placeholder="example@mail.ru">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Комментарий</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Опишите вашу задачу или вопрос..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn submit-btn">
+                        <i class="fas fa-paper-plane"></i> Отправить заявку
+                    </button>
+                    
+                    <div id="form-message"></div>
+                </form>
+                
+                <div class="contact-info">
+                    <h3><i class="fas fa-phone-alt"></i> 8 800 222-26-73</h3>
+                    <p><i class="fas fa-envelope"></i> info@drupal-coder.ru</p>
+                    <p class="contact-note">* После отправки заявки наш менеджер свяжется с вами в течение 2 часов</p>
                 </div>
             </div>
         </div>
@@ -404,41 +480,37 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <a href="#" class="logo">ART VISION</a>
-                    <p>Выставка современного искусства "Новые горизонты"</p>
-                    <p>15-30 декабря 2024</p>
+                    <a href="#" class="logo">DRUPAL-CODER</a>
+                    <p>13 лет совершенствуем компетенции в Drupal поддержке!</p>
+                    <p>© Сергей Синица 2020</p>
                 </div>
                 
-                <div class="footer-contact">
-                    <h4>Контакты</h4>
-                    <p><i class="fas fa-map-marker-alt"></i> Москва, Манежная площадь, 1</p>
-                    <p><i class="fas fa-phone"></i> +7 (495) 123-45-67</p>
-                    <p><i class="fas fa-envelope"></i> info@artvision-expo.ru</p>
-                    <p><i class="far fa-clock"></i> 11:00-21:00 ежедневно</p>
+                <div class="footer-services">
+                    <h4>Услуги</h4>
+                    <ul>
+                        <li><a href="#services">Разработка на Drupal</a></li>
+                        <li><a href="#services">Поддержка сайтов</a></li>
+                        <li><a href="#services">Аудит безопасности</a></li>
+                        <li><a href="#services">Оптимизация скорости</a></li>
+                        <li><a href="#services">Миграция на Drupal</a></li>
+                    </ul>
                 </div>
                 
-                <div class="footer-social">
-                    <h4>Мы в соцсетях</h4>
-                    <div class="social-icons">
-                        <a href="#" class="social-icon" aria-label="Instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="social-icon" aria-label="Facebook">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="social-icon" aria-label="Telegram">
-                            <i class="fab fa-telegram"></i>
-                        </a>
-                        <a href="#" class="social-icon" aria-label="VK">
-                            <i class="fab fa-vk"></i>
-                        </a>
-                    </div>
+                <div class="footer-company">
+                    <h4>Компания</h4>
+                    <ul>
+                        <li><a href="#about">О нас</a></li>
+                        <li><a href="#team">Команда</a></li>
+                        <li><a href="#projects">Проекты</a></li>
+                        <li><a href="#blog">Блог</a></li>
+                        <li><a href="#contact">Контакты</a></li>
+                    </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>© 2024 Выставка "Новые горизонты". Все права защищены.</p>
-                <p class="footer-note">Организатор: Фонд развития современного искусства</p>
+                <p>Проект ООО «Инжиниринг», Краснодар, Россия.</p>
+                <p>Drupal является зарегистрированной торговой маркой Dries Buytaert.</p>
             </div>
         </div>
     </footer>
