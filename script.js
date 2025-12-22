@@ -54,7 +54,7 @@ desktopDropdowns.forEach(dropdown => {
     });
 });
 
-// Слайдер - ОЧЕНЬ ПРОСТАЯ РАБОЧАЯ ВЕРСИЯ
+// Слайдер 
 class SimpleSlider {
     constructor() {
         this.slides = document.querySelectorAll('.slide');
@@ -166,7 +166,7 @@ class SimpleContactForm {
     constructor() {
         this.form = document.getElementById('contact-form');
         this.messageEl = document.getElementById('form-message');
-        
+        this.formspreeUrl = 'https://formspree.io/f/mgownazv'; 
         console.log('Форма найдена:', this.form ? 'да' : 'нет');
         console.log('Элемент сообщения:', this.messageEl ? 'найден' : 'не найден');
         
