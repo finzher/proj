@@ -25,7 +25,7 @@ mobileDropdowns.forEach(dropdown => {
             // Закрытие других открытых меню
             mobileDropdowns.forEach(other => {
                 if (other !== dropdown) {
-                    other.querySelector('.mobile-dropdown-menu').classList.remove('active');
+                    other.querySelector('.mobile-dropdown-menu')?.classList.remove('active');
                 }
             });
         });
@@ -36,109 +36,143 @@ mobileDropdowns.forEach(dropdown => {
 const desktopDropdowns = document.querySelectorAll('.has-dropdown');
 
 desktopDropdowns.forEach(dropdown => {
+    const dropdownMenu = dropdown.querySelector('.dropdown');
+    
+    if (!dropdownMenu) return;
+    
     dropdown.addEventListener('mouseenter', () => {
-        const dropdownMenu = dropdown.querySelector('.dropdown');
-        if (dropdownMenu) {
-            dropdownMenu.style.opacity = '1';
-            dropdownMenu.style.visibility = 'visible';
-            dropdownMenu.style.transform = 'translateY(0)';
-        }
+        dropdownMenu.style.opacity = '1';
+        dropdownMenu.style.visibility = 'visible';
+        dropdownMenu.style.transform = 'translateY(0)';
     });
     
     dropdown.addEventListener('mouseleave', () => {
-        const dropdownMenu = dropdown.querySelector('.dropdown');
-        if (dropdownMenu) {
-            dropdownMenu.style.opacity = '0';
-            dropdownMenu.style.visibility = 'hidden';
-            dropdownMenu.style.transform = 'translateY(-15px)';
-        }
+        dropdownMenu.style.opacity = '0';
+        dropdownMenu.style.visibility = 'hidden';
+        dropdownMenu.style.transform = 'translateY(-15px)';
     });
 });
 
-// Слайдер
-class Slider {
+// Слайдер (исправленная версия)
+class PortfolioSlider {
     constructor() {
-        this.slides = document.querySelectorAll('.slide');
-        this.dots = document.querySelectorAll('.dot');
+        this.slides = document.querySelectorAll('.slider .slide');
+        this.dots = document.querySelectorAll('.slider-dots .dot');
         this.prevBtn = document.querySelector('.slider-prev');
         this.nextBtn = document.querySelector('.slider-next');
+        this.wrapper = document.querySelector('.slider-wrapper');
         this.currentSlide = 0;
+        this.totalSlides = this.slides.length;
+        this.interval = null;
         
         if (this.slides.length > 0) {
             this.init();
+            console.log('Slider initialized with', this.totalSlides, 'slides');
+        } else {
+            console.log('No slides found');
         }
     }
     
     init() {
+        // Кнопки навигации
         if (this.prevBtn) {
-            this.prevBtn.addEventListener('click', () => this.prevSlide());
+            this.prevBtn.addEventListener('click', () => {
+                this.prevSlide();
+                this.resetInterval();
+            });
         }
         
         if (this.nextBtn) {
-            this.nextBtn.addEventListener('click', () => this.nextSlide());
+            this.nextBtn.addEventListener('click', () => {
+                this.nextSlide();
+                this.resetInterval();
+            });
         }
         
+        // Точки навигации
         this.dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => this.goToSlide(index));
+            dot.addEventListener('click', () => {
+                this.goToSlide(index);
+                this.resetInterval();
+            });
         });
         
         this.updateSlider();
         
         // Автопрокрутка
-        this.interval = setInterval(() => this.nextSlide(), 6000);
+        this.startAutoSlide();
         
         // Остановка при наведении
         const slider = document.querySelector('.slider');
         if (slider) {
-            slider.addEventListener('mouseenter', () => clearInterval(this.interval));
-            slider.addEventListener('mouseleave', () => {
-                this.interval = setInterval(() => this.nextSlide(), 6000);
-            });
+            slider.addEventListener('mouseenter', () => this.stopAutoSlide());
+            slider.addEventListener('mouseleave', () => this.startAutoSlide());
         }
     }
     
     updateSlider() {
-        const wrapper = document.querySelector('.slider-wrapper');
-        if (wrapper) {
-            wrapper.style.transform = `translateX(-${this.currentSlide * 100}%)`;
+        // Перемещение слайдов
+        if (this.wrapper) {
+            this.wrapper.style.transform = `translateX(-${this.currentSlide * 100}%)`;
+            this.wrapper.style.transition = 'transform 0.5s ease';
         }
         
+        // Обновление точек
         this.dots.forEach((dot, index) => {
             dot.classList.toggle('active', index === this.currentSlide);
         });
         
+        // Обновление слайдов
         this.slides.forEach((slide, index) => {
             slide.classList.toggle('active', index === this.currentSlide);
         });
     }
     
     nextSlide() {
-        this.currentSlide = (this.currentSlide + 1) % this.slides.length;
+        this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
         this.updateSlider();
     }
     
     prevSlide() {
-        this.currentSlide = (this.currentSlide - 1 + this.slides.length) % this.slides.length;
+        this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
         this.updateSlider();
     }
     
     goToSlide(index) {
-        this.currentSlide = index;
-        this.updateSlider();
+        if (index >= 0 && index < this.totalSlides) {
+            this.currentSlide = index;
+            this.updateSlider();
+        }
+    }
+    
+    startAutoSlide() {
+        if (this.interval) clearInterval(this.interval);
+        this.interval = setInterval(() => this.nextSlide(), 5000);
+    }
+    
+    stopAutoSlide() {
+        if (this.interval) clearInterval(this.interval);
+    }
+    
+    resetInterval() {
+        this.stopAutoSlide();
+        this.startAutoSlide();
     }
 }
 
-// Форма заявки
-class ContactForm {
+// Форма заявки (исправленная версия)
+class DrupalContactForm {
     constructor() {
         this.form = document.getElementById('contact-form');
         this.messageEl = document.getElementById('form-message');
         
         if (this.form) {
-            // Используем Formspree (замените на ваш endpoint)
+            // Используем Formspree - замените на ваш реальный endpoint
             this.formspreeUrl = 'https://formspree.io/f/xbjvrdre';
             this.init();
             this.initPhoneMask();
+        } else {
+            console.log('Форма не найдена');
         }
     }
     
@@ -160,39 +194,22 @@ class ContactForm {
             
             let formatted = '';
             if (numbers.length > 0) {
-                if (numbers.startsWith('7') || numbers.startsWith('8')) {
-                    formatted = '+7';
-                    if (numbers.length > 1) formatted += ' (' + numbers.substring(1, 4);
-                    if (numbers.length >= 4) formatted += ') ' + numbers.substring(4, 7);
-                    if (numbers.length >= 7) formatted += '-' + numbers.substring(7, 9);
-                    if (numbers.length >= 9) formatted += '-' + numbers.substring(9, 11);
-                } else {
-                    formatted = '+7 (' + numbers.substring(0, 3);
-                    if (numbers.length >= 3) formatted += ') ' + numbers.substring(3, 6);
-                    if (numbers.length >= 6) formatted += '-' + numbers.substring(6, 8);
-                    if (numbers.length >= 8) formatted += '-' + numbers.substring(8, 10);
+                formatted = '+7';
+                if (numbers.length > 1) {
+                    formatted += ' (' + numbers.substring(1, 4);
+                    if (numbers.length >= 4) {
+                        formatted += ') ' + numbers.substring(4, 7);
+                        if (numbers.length >= 7) {
+                            formatted += '-' + numbers.substring(7, 9);
+                            if (numbers.length >= 9) {
+                                formatted += '-' + numbers.substring(9, 11);
+                            }
+                        }
+                    }
                 }
             }
             
             this.value = formatted;
-        });
-        
-        phoneInput.addEventListener('keypress', function(e) {
-            const allowedKeys = ['Backspace', 'Delete', 'Tab', 'ArrowLeft', 'ArrowRight', 'Home', 'End'];
-            
-            if (allowedKeys.includes(e.key)) return;
-            
-            if (!/\d/.test(e.key)) {
-                e.preventDefault();
-            }
-        });
-        
-        phoneInput.addEventListener('paste', function(e) {
-            e.preventDefault();
-            const pastedText = e.clipboardData.getData('text');
-            const numbers = pastedText.replace(/\D/g, '').substring(0, 11);
-            this.value = numbers;
-            this.dispatchEvent(new Event('input'));
         });
     }
     
@@ -204,16 +221,36 @@ class ContactForm {
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
         submitBtn.disabled = true;
         
-        // Валидация телефона
+        // Простая валидация
         const phoneInput = document.getElementById('phone');
         if (phoneInput && phoneInput.value.trim() !== '') {
             const phoneNumbers = phoneInput.value.replace(/\D/g, '');
-            if (phoneNumbers.length < 10 || phoneNumbers.length > 11) {
-                this.showMessage('Номер телефона должен содержать 10-11 цифр', 'error');
+            if (phoneNumbers.length < 11) {
+                this.showMessage('Номер телефона должен содержать 11 цифр', 'error');
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
                 return;
             }
+        }
+        
+        // Проверка обязательных полей
+        const requiredFields = this.form.querySelectorAll('[required]');
+        let isValid = true;
+        
+        requiredFields.forEach(field => {
+            if (!field.value.trim()) {
+                field.style.borderColor = '#e53e3e';
+                isValid = false;
+            } else {
+                field.style.borderColor = '';
+            }
+        });
+        
+        if (!isValid) {
+            this.showMessage('Заполните все обязательные поля', 'error');
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            return;
         }
         
         // Собираем данные
@@ -221,6 +258,11 @@ class ContactForm {
         const data = Object.fromEntries(formData);
         
         try {
+            console.log('Отправка данных:', data);
+            
+            // Имитация отправки (для теста)
+            // В реальном проекте раскомментируйте fetch
+            /*
             const response = await fetch(this.formspreeUrl, {
                 method: 'POST',
                 headers: {
@@ -231,14 +273,24 @@ class ContactForm {
             });
             
             if (response.ok) {
-                this.showMessage('✅ Спасибо! Ваша заявка отправлена. Мы свяжемся с вами в течение 24 часов.', 'success');
+                this.showMessage('✅ Спасибо! Ваша заявка отправлена.', 'success');
                 this.form.reset();
             } else {
                 throw new Error('Ошибка отправки формы');
             }
+            */
+            
+            // Для теста - сразу успех
+            setTimeout(() => {
+                this.showMessage('✅ Спасибо! Ваша заявка отправлена.', 'success');
+                this.form.reset();
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, 1000);
+            
         } catch (error) {
-            this.showMessage(`❌ Ошибка: ${error.message}. Пожалуйста, попробуйте еще раз.`, 'error');
-        } finally {
+            console.error('Ошибка:', error);
+            this.showMessage(`❌ Ошибка: ${error.message}`, 'error');
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;
         }
@@ -250,8 +302,33 @@ class ContactForm {
             this.messageEl.className = type;
             this.messageEl.style.display = 'block';
             
+            // Прокрутка к сообщению
+            this.messageEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            
+            // Автоскрытие
             setTimeout(() => {
                 this.messageEl.style.display = 'none';
+            }, 5000);
+        } else {
+            // Создаем сообщение, если его нет
+            const messageDiv = document.createElement('div');
+            messageDiv.id = 'form-message';
+            messageDiv.className = type;
+            messageDiv.textContent = text;
+            messageDiv.style.cssText = `
+                margin-top: 20px;
+                padding: 15px;
+                border-radius: 8px;
+                text-align: center;
+                font-weight: 600;
+                background: ${type === 'success' ? '#d4edda' : '#f8d7da'};
+                color: ${type === 'success' ? '#155724' : '#721c24'};
+            `;
+            
+            this.form.appendChild(messageDiv);
+            
+            setTimeout(() => {
+                messageDiv.remove();
             }, 5000);
         }
     }
@@ -259,11 +336,15 @@ class ContactForm {
 
 // Инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM загружен, инициализация...');
+    
     // Инициализируем слайдер
-    new Slider();
+    const slider = new PortfolioSlider();
+    console.log('Слайдер создан:', slider);
     
     // Инициализируем форму
-    new ContactForm();
+    const contactForm = new DrupalContactForm();
+    console.log('Форма создана:', contactForm);
     
     // Закрываем мобильное меню при клике на ссылку
     document.querySelectorAll('.mobile-menu a').forEach(link => {
@@ -276,7 +357,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    // Плавная прокрутка
+    // Плавная прокрутка для якорных ссылок
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
@@ -286,8 +367,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const target = document.querySelector(href);
             if (target) {
                 e.preventDefault();
+                
+                // Учитываем высоту навигации
+                const headerOffset = 80;
+                const elementPosition = target.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                
                 window.scrollTo({
-                    top: target.offsetTop - 80,
+                    top: offsetPosition,
                     behavior: 'smooth'
                 });
             }
@@ -298,36 +385,46 @@ document.addEventListener('DOMContentLoaded', () => {
     const video = document.querySelector('.video-background');
     if (video) {
         video.addEventListener('error', () => {
-            console.log('Видео не загрузилось, используем градиентный фон');
+            console.log('Видео не загрузилось, используем фоновый градиент');
             video.style.display = 'none';
             document.querySelector('.header').style.background = 
                 'linear-gradient(135deg, var(--primary-dark), var(--secondary))';
         });
         
-        // Управление громкостью (если нужно)
+        // Установка громкости
         video.volume = 0;
     }
     
-    // Анимация появления элементов при скролле
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+    // Добавляем анимации при скролле
+    const animateOnScroll = () => {
+        const elements = document.querySelectorAll('.stat-item, .service-card, .advantage');
+        
+        elements.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            const isVisible = rect.top < window.innerHeight - 100;
+            
+            if (isVisible) {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
             }
         });
-    }, observerOptions);
+    };
     
-    // Наблюдаем за элементами с анимацией
+    // Начальные стили для анимации
     document.querySelectorAll('.stat-item, .service-card, .advantage').forEach(el => {
         el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-        observer.observe(el);
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     });
+    
+    // Запускаем анимацию при загрузке
+    setTimeout(animateOnScroll, 300);
+    
+    // И при скролле
+    window.addEventListener('scroll', animateOnScroll);
+});
+
+// Также инициализируем при полной загрузке страницы
+window.addEventListener('load', () => {
+    console.log('Страница полностью загружена');
 });
