@@ -67,7 +67,7 @@ class ContactForm {
         
         if (this.form) {
             // URL для тестирования формы (можно изменить на ваш сервис форм)
-            this.formspreeUrl = 'https://formspree.io/f/mvojgqza';
+            this.formspreeUrl = 'https://formspree.io/f/mgownazv';
             this.init();
             this.initPhoneMask();
         }
