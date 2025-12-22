@@ -8,7 +8,7 @@
     <!-- Подключаем Montserrat как указано в fonts.txt -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -73,207 +73,222 @@
         <div class="header-content">
             <h1>Поддержка сайтов на Drupal</h1>
             <p class="subtitle">13 лет совершенствуем компетенции в Drupal поддержке!</p>
-            <p class="experience"><i class="fas fa-trophy"></i> 14 лет экспертизы в Drupal</p>
-            <p class="clients"><i class="fas fa-users"></i> Более 100 довольных клиентов</p>
-            <p class="projects"><i class="fas fa-briefcase"></i> 500+ успешных проектов</p>
+            <div class="stats-header">
+                <div class="stat-item">
+                    <div class="stat-number">14</div>
+                    <div class="stat-text">лет экспертизы</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-text">проектов</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-text">клиентов</div>
+                </div>
+            </div>
             <a href="#contact" class="btn">ПОДДЕРЖКА DRUPAL</a>
         </div>
     </header>
 
-    <!-- Блок "Поддержка сайтов на Drupal" -->
-    <section class="support-section" id="support">
+    <!-- Основные услуги (4 блока как в макете) -->
+    <section class="services-section" id="services">
         <div class="container">
-            <h2>Поддержка сайтов на Drupal</h2>
-            <div class="support-content">
-                <p class="intro-text">Разрабатываем и оптимизируем модули, расширяем функциональность сайтов, обновляем дизайн.</p>
+            <h2>Наши услуги</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Разработка модулей</h3>
+                    <p>Создание и оптимизация модулей Drupal, расширение функциональности сайтов</p>
+                </div>
                 
-                <div class="services-grid">
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <h3>Разработка модулей</h3>
-                        <p>Создание и оптимизация модулей сайта, расширение функциональности.</p>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-sync-alt"></i>
                     </div>
-                    
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-sync-alt"></i>
-                        </div>
-                        <h3>Миграция данных</h3>
-                        <p>Импорт контента и данных в Drupal из любых источников.</p>
+                    <h3>Миграция данных</h3>
+                    <p>Импорт контента в Drupal из любых CMS и систем</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
                     </div>
-                    
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <h3>Аудит безопасности</h3>
-                        <p>Полная проверка безопасности Drupal-сайтов и устранение уязвимостей.</p>
+                    <h3>Аудит безопасности</h3>
+                    <p>Полная проверка безопасности Drupal-сайтов, устранение уязвимостей</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tachometer-alt"></i>
                     </div>
-                    
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <h3>Оптимизация скорости</h3>
-                        <p>Ускорение загрузки Drupal-сайтов для улучшения пользовательского опыта.</p>
-                    </div>
+                    <h3>Оптимизация скорости</h3>
+                    <p>Ускорение загрузки Drupal-сайтов, улучшение производительности</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Блок "Поддержка от Drupal-coder" (8 преимуществ) -->
-    <section class="advantages-section" id="services">
+    <!-- Преимущества Drupal-coder (8 блоков) -->
+    <section class="advantages-section">
         <div class="container">
-            <h2>Поддержка от Drupal-coder</h2>
-            
+            <h2>Почему выбирают Drupal-coder</h2>
             <div class="advantages-grid">
                 <div class="advantage-card">
                     <div class="advantage-number">01</div>
-                    <h3>Постановка задачи по Email</h3>
-                    <p>Удобная модель постановки задач, при которой задачи фиксируются и никогда не теряются.</p>
+                    <h3>Опыт 13 лет</h3>
+                    <p>Более 13 лет работы с Drupal, глубокое понимание системы</p>
                 </div>
                 
                 <div class="advantage-card">
                     <div class="advantage-number">02</div>
-                    <h3>Система Helpdesk — отчётность</h3>
-                    <p>Прозрачность и отчетность. Возможность посмотреть все заявки в работе и отработанные часы.</p>
+                    <h3>Штатные специалисты</h3>
+                    <p>Собственная команда разработчиков, никаких фрилансеров</p>
                 </div>
                 
                 <div class="advantage-card">
                     <div class="advantage-number">03</div>
-                    <h3>Расширенная техподдержка</h3>
-                    <p>Возможность организации расширенной техподдержки с 6:00 до 22:00 без выходных.</p>
+                    <h3>Прозрачная отчетность</h3>
+                    <p>Система Helpdesk с подробной отчетностью по задачам</p>
                 </div>
                 
                 <div class="advantage-card">
                     <div class="advantage-number">04</div>
-                    <h3>Персональный менеджер проекта</h3>
-                    <p>Ваш менеджер проекта всегда в курсе текущего состояния и готов ответить на любые вопросы.</p>
+                    <h3>Поддержка 24/7</h3>
+                    <p>Круглосуточная техническая поддержка ваших проектов</p>
                 </div>
                 
                 <div class="advantage-card">
                     <div class="advantage-number">05</div>
-                    <h3>Удобные способы оплаты</h3>
-                    <p>Безналичный расчет по договору или электронные деньги: WebMoney, Яндекс.Деньги, Paypal.</p>
+                    <h3>SLA договор</h3>
+                    <p>Гарантированные сроки и качество работ по договору</p>
                 </div>
                 
                 <div class="advantage-card">
                     <div class="advantage-number">06</div>
-                    <h3>Работа с SLA и NDA</h3>
-                    <p>Работа в рамках соглашений о конфиденциальности и об уровне качества работ.</p>
+                    <h3>Персональный менеджер</h3>
+                    <p>Личный менеджер для каждого клиента</p>
                 </div>
                 
                 <div class="advantage-card">
                     <div class="advantage-number">07</div>
-                    <h3>Штатные специалисты</h3>
-                    <p>Надежные штатные специалисты, никаких фрилансеров.</p>
+                    <h3>Современные технологии</h3>
+                    <p>Используем последние версии Drupal и современные подходы</p>
                 </div>
                 
                 <div class="advantage-card">
                     <div class="advantage-number">08</div>
-                    <h3>Удобные каналы связи</h3>
-                    <p>Консультации по телефону, скайпу, в мессенджерах.</p>
+                    <h3>Гибкая оплата</h3>
+                    <p>Удобные способы оплаты, работаем с НДС</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Тарифы как в макете -->
+    <!-- Тарифы -->
     <section class="pricing-section">
         <div class="container">
-            <h2>Тарифы</h2>
+            <h2>Тарифы на поддержку</h2>
             <div class="pricing-grid">
                 <div class="pricing-card">
                     <h3>Стартовый</h3>
                     <div class="price">от 6 000 <span>руб./мес</span></div>
                     <ul class="pricing-features">
-                        <li>Консультации и работы по SEO</li>
-                        <li>Услуги дизайнера</li>
-                        <li>Недозвоны включены</li>
-                        <li>Время реакции: до 2 рабочих дней</li>
-                        <li><strong>Неиспользованные часы переносятся</strong></li>
+                        <li><i class="fas fa-check"></i> Консультации по Drupal</li>
+                        <li><i class="fas fa-check"></i> Базовая техподдержка</li>
+                        <li><i class="fas fa-check"></i> Обновление модулей</li>
+                        <li><i class="fas fa-check"></i> Мониторинг доступности</li>
+                        <li><i class="fas fa-check"></i> Резервное копирование</li>
                     </ul>
-                    <button class="btn pricing-btn">Выбрать тариф</button>
+                    <a href="#contact" class="btn pricing-btn">Выбрать тариф</a>
                 </div>
                 
                 <div class="pricing-card popular">
-                    <div class="popular-badge">Бизнес</div>
+                    <div class="popular-badge">Популярный</div>
                     <h3>Бизнес</h3>
                     <div class="price">от 30 000 <span>руб./мес</span></div>
                     <ul class="pricing-features">
-                        <li>Консультации и работы по SEO</li>
-                        <li>Услуги дизайнера</li>
-                        <li>Приоритетная поддержка</li>
-                        <li>Время реакции: высокое</li>
-                        <li><strong>Неиспользованные часы не переносятся</strong></li>
+                        <li><i class="fas fa-check"></i> Всё из Стартового</li>
+                        <li><i class="fas fa-check"></i> Приоритетная поддержка</li>
+                        <li><i class="fas fa-check"></i> Оптимизация скорости</li>
+                        <li><i class="fas fa-check"></i> SEO-аудит</li>
+                        <li><i class="fas fa-check"></i> Контент-поддержка</li>
                     </ul>
-                    <button class="btn pricing-btn">Выбрать тариф</button>
+                    <a href="#contact" class="btn pricing-btn">Выбрать тариф</a>
                 </div>
                 
                 <div class="pricing-card">
                     <h3>VIP</h3>
                     <div class="price">от 270 000 <span>руб./мес</span></div>
                     <ul class="pricing-features">
-                        <li>Консультации и работы по SEO</li>
-                        <li>Услуги дизайнера</li>
-                        <li>Максимальный приоритет</li>
-                        <li>Время реакции: в день обращения</li>
-                        <li><strong>Неиспользованные часы не переносятся</strong></li>
+                        <li><i class="fas fa-check"></i> Всё из Бизнес</li>
+                        <li><i class="fas fa-check"></i> Выделенный разработчик</li>
+                        <li><i class="fas fa-check"></i> Круглосуточная поддержка</li>
+                        <li><i class="fas fa-check"></i> Аудит безопасности</li>
+                        <li><i class="fas fa-check"></i> Персональный менеджер</li>
                     </ul>
-                    <button class="btn pricing-btn">Выбрать тариф</button>
+                    <a href="#contact" class="btn pricing-btn">Выбрать тариф</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Блок "Получить индивидуальный тариф" -->
+    <!-- Кнопка Связаться -->
     <section class="cta-section">
         <div class="container">
-            <h2>Не нашли подходящий тариф?</h2>
-            <p>Оставьте заявку и мы предложим вам индивидуальные условия сотрудничества</p>
-            <a href="#contact" class="btn cta-btn">СВЯЗАТЬСЯ С НАМИ!</a>
+            <h2>Нужна индивидуальная поддержка?</h2>
+            <p>Мы разработаем персональный тариф под ваши задачи</p>
+            <a href="#contact" class="btn cta-btn">СВЯЗАТЬСЯ С НАМИ</a>
         </div>
     </section>
 
     <!-- Примеры работ -->
     <section class="portfolio-section">
         <div class="container">
-            <h2>Наши работы</h2>
+            <h2>Примеры наших работ</h2>
             <div class="portfolio-grid">
                 <div class="portfolio-item">
                     <div class="portfolio-image">
                         <i class="fas fa-shopping-cart"></i>
                     </div>
                     <h3>Интернет-магазин</h3>
-                    <p>Настройка события GA в интернет-магазине</p>
-                    <div class="portfolio-price">от 11 000 ₽</div>
+                    <p>Настройка Google Analytics</p>
+                    <div class="portfolio-info">
+                        <span><i class="far fa-clock"></i> 3 дня</span>
+                        <span><i class="fas fa-ruble-sign"></i> 11 000</span>
+                    </div>
                 </div>
                 
                 <div class="portfolio-item">
                     <div class="portfolio-image">
                         <i class="fas fa-mobile-alt"></i>
                     </div>
-                    <h3>Мобильная версия</h3>
+                    <h3>Адаптивная версия</h3>
                     <p>Разработка мобильной версии сайта</p>
-                    <div class="portfolio-price">от 20 400 ₽</div>
+                    <div class="portfolio-info">
+                        <span><i class="far fa-clock"></i> 7 дней</span>
+                        <span><i class="fas fa-ruble-sign"></i> 20 400</span>
+                    </div>
                 </div>
                 
                 <div class="portfolio-item">
                     <div class="portfolio-image">
                         <i class="fas fa-credit-card"></i>
                     </div>
-                    <h3>Модуль оплаты</h3>
+                    <h3>Платежная система</h3>
                     <p>Интеграция модуля оплаты</p>
-                    <div class="portfolio-price">от 8 400 ₽</div>
+                    <div class="portfolio-info">
+                        <span><i class="far fa-clock"></i> 2 дня</span>
+                        <span><i class="fas fa-ruble-sign"></i> 8 400</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Команда Drupal-coder -->
+    <!-- Команда -->
     <section class="team-section" id="team">
         <div class="container">
             <h2>Наша команда</h2>
@@ -283,8 +298,8 @@
                         <i class="fas fa-user-tie"></i>
                     </div>
                     <h3>Сергей Синица</h3>
-                    <p class="position">Руководитель отдела веб-разработки</p>
-                    <p class="details">Кандидат технических наук, заместитель директора</p>
+                    <p class="position">Руководитель разработки</p>
+                    <p>Кандидат технических наук, 15 лет опыта</p>
                 </div>
                 
                 <div class="team-member">
@@ -292,8 +307,8 @@
                         <i class="fas fa-user-tie"></i>
                     </div>
                     <h3>Роман Агабеков</h3>
-                    <p class="position">Руководитель отдела DevOPS</p>
-                    <p class="details">Директор</p>
+                    <p class="position">Директор</p>
+                    <p>Руководитель отдела DevOps, 12 лет опыта</p>
                 </div>
                 
                 <div class="team-member">
@@ -301,8 +316,8 @@
                         <i class="fas fa-user-tie"></i>
                     </div>
                     <h3>Алексей Синица</h3>
-                    <p class="position">Руководитель отдела поддержки сайтов</p>
-                    <p class="details">14 лет опыта работы с Drupal</p>
+                    <p class="position">Руководитель поддержки</p>
+                    <p>14 лет работы с Drupal, эксперт</p>
                 </div>
                 
                 <div class="team-member">
@@ -310,44 +325,46 @@
                         <i class="fas fa-user-tie"></i>
                     </div>
                     <h3>Дарья Водолеева</h3>
-                    <p class="position">Руководитель отдела продвижения</p>
-                    <p class="details">Контекстная реклама и контент-поддержка сайтов</p>
+                    <p class="position">Руководитель продвижения</p>
+                    <p>SEO, контекстная реклама, 8 лет опыта</p>
                 </div>
-            </div>
-            
-            <div class="full-team">
-                <a href="#team" class="btn team-btn">Вся команда</a>
             </div>
         </div>
     </section>
 
-    <!-- Последние кейсы -->
+    <!-- Кейсы -->
     <section class="cases-section">
         <div class="container">
-            <h2>Последние кейсы</h2>
+            <h2>Кейсы Drupal-coder</h2>
             <div class="cases-grid">
                 <div class="case-card">
-                    <div class="case-icon">
-                        <i class="fas fa-rocket"></i>
+                    <h3>Ускорение сайта в 30 раз</h3>
+                    <p>Настройка кэширования, оптимизация сервера, ускорение загрузки страниц с 10 сек до 0.3 сек</p>
+                    <div class="case-tech">
+                        <span>Drupal 7</span>
+                        <span>Varnish</span>
+                        <span>Memcached</span>
                     </div>
-                    <h3>Ускорение в 30 раз</h3>
-                    <p>Настройка кэширования данных, апгрейд сервера. Ускорение работы сайта в 30 раз!</p>
                 </div>
                 
                 <div class="case-card">
-                    <div class="case-icon">
-                        <i class="fas fa-tachometer-alt"></i>
+                    <h3>Миграция с 1С-Битрикс</h3>
+                    <p>Перенос 5000+ товаров, 1000+ страниц контента, сохранение SEO-позиций</p>
+                    <div class="case-tech">
+                        <span>Drupal 9</span>
+                        <span>Migrate API</span>
+                        <span>REST API</span>
                     </div>
-                    <h3>Оптимизация скорости</h3>
-                    <p>Drupal 7: ускорение времени генерации страниц интернет-магазина на 32%.</p>
                 </div>
                 
                 <div class="case-card">
-                    <div class="case-icon">
-                        <i class="fas fa-exchange-alt"></i>
+                    <h3>Интеграция с CRM</h3>
+                    <p>Автоматизация заказов, синхронизация клиентов, email-рассылки</p>
+                    <div class="case-tech">
+                        <span>Drupal 8</span>
+                        <span>AmoCRM</span>
+                        <span>Webhooks</span>
                     </div>
-                    <h3>Интеграция с 1С</h3>
-                    <p>Обмен товарами и заказами интернет-магазина на Drupal 7 с 1С.</p>
                 </div>
             </div>
         </div>
@@ -358,29 +375,21 @@
         <div class="container">
             <h2>Отзывы клиентов</h2>
             <div class="review-card">
-                <div class="review-icon">
+                <div class="review-content">
                     <i class="fas fa-quote-left"></i>
+                    <p>Сайт постоянно "падал" из-за высокой нагрузки. Обратились в Drupal-coder - ребята провели аудит, оптимизировали код и настройки сервера. Теперь сайт выдерживает в 10 раз больше посетителей. Рекомендую!</p>
                 </div>
-                <p class="review-text">"Обратился в Drupal-coder с проблемным сайтом. Ребята сделали полный редизайн, добавили недостающий функционал. Главное — все качественно и быстро. Спасибо команде за профессионализм!"</p>
                 <div class="review-author">
-                    <strong>Наталья Сушкова</strong>
-                    <span>Руководитель отдела веб-проектов</span>
+                    <strong>Ирина Петрова</strong>
+                    <span>Директор интернет-магазина</span>
                 </div>
             </div>
             
             <div class="clients-logos">
-                <div class="logo-item">
-                    <i class="fas fa-building"></i>
-                    <span>ООО "Инжиниринг"</span>
-                </div>
-                <div class="logo-item">
-                    <i class="fas fa-home"></i>
-                    <span>СТРОЙКОМПАНИЯ</span>
-                </div>
-                <div class="logo-item">
-                    <i class="fas fa-plane"></i>
-                    <span>Japan Travel</span>
-                </div>
+                <div class="logo-item">ООО "Рога и копыта"</div>
+                <div class="logo-item">СтройГарант</div>
+                <div class="logo-item">ТехноПарк</div>
+                <div class="logo-item">МебельОнлайн</div>
             </div>
         </div>
     </section>
@@ -388,76 +397,75 @@
     <!-- FAQ -->
     <section class="faq-section">
         <div class="container">
-            <h2>Часто задаваемые вопросы</h2>
+            <h2>Частые вопросы</h2>
             <div class="faq-container">
-                <div class="faq-item active">
+                <div class="faq-item">
                     <div class="faq-question">
-                        <span>1. Кто непосредственно занимается поддержкой?</span>
+                        <span>1. Кто занимается поддержкой?</span>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Сайты поддерживают штатные сотрудники ООО "Инжиниринг" г. Краснодар, прошедшие специальное обучение и имеющие опыт работы с Drupal от 4 до 15 лет: 8 веб-разработчиков, 2 специалиста по SEO, 4 системных администратора.</p>
+                        <p>Штатные сотрудники ООО "Инжиниринг" с опытом работы с Drupal от 4 до 15 лет.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span>2. Как организована работа поддержки?</span>
+                        <span>2. Как организована работа?</span>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Работа организована через систему Helpdesk. Все задачи ставятся через email, фиксируются и никогда не теряются. Вы всегда можете посмотреть статус выполнения любой задачи.</p>
+                        <p>Через систему Helpdesk. Все задачи фиксируются и отслеживаются.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span>3. Что происходит, когда отработаны все предоплаченные часы за месяц?</span>
+                        <span>3. Что если часы не использованы?</span>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Неиспользованные оплаченные часы переносятся на следующий месяц (для тарифов Стартовый и Бизнес).</p>
+                        <p>Неиспользованные часы переносятся на следующий месяц.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span>10. В какое время работает поддержка?</span>
+                        <span>10. Время работы поддержки?</span>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Стандартная поддержка работает в рабочее время. Также доступна расширенная техподдержка с 6:00 до 22:00 без выходных.</p>
+                        <p>Стандартная: пн-пт 9-18. Расширенная: 6-22 без выходных.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Форма обратной связи -->
+    <!-- Форма -->
     <section class="contact-section" id="contact">
         <div class="container">
-            <h2>Оставить заявку на поддержку сайта</h2>
-            <div class="contact-form-container">
+            <h2>Оставить заявку</h2>
+            <div class="contact-wrapper">
                 <form id="contact-form">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="name">Ваше имя *</label>
-                            <input type="text" id="name" name="name" required placeholder="Иван Иванов">
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Телефон *</label>
-                            <input type="tel" id="phone" name="phone" required placeholder="+7 (999) 123-45-67">
-                        </div>
+                    <div class="form-group">
+                        <label for="name">Имя *</label>
+                        <input type="text" id="name" name="name" required placeholder="Ваше имя">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Телефон *</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="+7 (___) ___-__-__">
                     </div>
                     
                     <div class="form-group">
                         <label for="email">Email *</label>
-                        <input type="email" id="email" name="email" required placeholder="example@mail.ru">
+                        <input type="email" id="email" name="email" required placeholder="email@example.com">
                     </div>
                     
                     <div class="form-group">
-                        <label for="message">Комментарий</label>
-                        <textarea id="message" name="message" rows="4" placeholder="Опишите вашу задачу или вопрос..."></textarea>
+                        <label for="message">Сообщение</label>
+                        <textarea id="message" name="message" placeholder="Опишите вашу задачу..."></textarea>
                     </div>
                     
                     <button type="submit" class="btn submit-btn">
@@ -470,47 +478,43 @@
                 <div class="contact-info">
                     <h3><i class="fas fa-phone-alt"></i> 8 800 222-26-73</h3>
                     <p><i class="fas fa-envelope"></i> info@drupal-coder.ru</p>
-                    <p class="contact-note">* После отправки заявки наш менеджер свяжется с вами в течение 2 часов</p>
+                    <p class="contact-note">* Мы перезвоним в течение 15 минут</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Футер -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
                     <a href="#" class="logo">DRUPAL-CODER</a>
-                    <p>13 лет совершенствуем компетенции в Drupal поддержке!</p>
+                    <p>Профессиональная поддержка сайтов на Drupal</p>
                     <p>© Сергей Синица 2020</p>
                 </div>
                 
                 <div class="footer-services">
                     <h4>Услуги</h4>
                     <ul>
-                        <li><a href="#services">Разработка на Drupal</a></li>
+                        <li><a href="#services">Разработка Drupal</a></li>
                         <li><a href="#services">Поддержка сайтов</a></li>
                         <li><a href="#services">Аудит безопасности</a></li>
                         <li><a href="#services">Оптимизация скорости</a></li>
-                        <li><a href="#services">Миграция на Drupal</a></li>
                     </ul>
                 </div>
                 
-                <div class="footer-company">
-                    <h4>Компания</h4>
-                    <ul>
-                        <li><a href="#about">О нас</a></li>
-                        <li><a href="#team">Команда</a></li>
-                        <li><a href="#projects">Проекты</a></li>
-                        <li><a href="#blog">Блог</a></li>
-                        <li><a href="#contact">Контакты</a></li>
-                    </ul>
+                <div class="footer-contact">
+                    <h4>Контакты</h4>
+                    <p>8 800 222-26-73</p>
+                    <p>info@drupal-coder.ru</p>
+                    <p>Пн-Пт: 9:00-18:00</p>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>Проект ООО «Инжиниринг», Краснодар, Россия.</p>
-                <p>Drupal является зарегистрированной торговой маркой Dries Buytaert.</p>
+                <p>ООО «Инжиниринг», Краснодар, Россия</p>
+                <p>Drupal является зарегистрированной торговой маркой Dries Buytaert</p>
             </div>
         </div>
     </footer>
