@@ -1,4 +1,4 @@
-// Мобильное меню
+// ===== МОБИЛЬНОЕ МЕНЮ =====
 const mobileMenuBtn = document.getElementById('mobile-menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
 
@@ -9,22 +9,15 @@ if (mobileMenuBtn && mobileMenu) {
     });
 }
 
-// Мобильные выпадающие меню
-const mobileDropdowns = document.querySelectorAll('.mobile-dropdown');
-
-mobileDropdowns.forEach(dropdown => {
-    const toggle = dropdown.querySelector('.dropdown-toggle');
-    const menu = dropdown.querySelector('.mobile-dropdown-menu');
-    
-    if (toggle && menu) {
-        toggle.addEventListener('click', (e) => {
-            e.preventDefault();
-            menu.classList.toggle('active');
-        });
-    }
+// Закрытие мобильного меню при клике на ссылку
+document.querySelectorAll('.mobile-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        mobileMenuBtn.classList.remove('active');
+    });
 });
 
-// Десктоп выпадающее меню
+// ===== ВЫПАДАЮЩЕЕ МЕНЮ ДЛЯ ДЕСКТОПА =====
 const desktopDropdowns = document.querySelectorAll('.has-dropdown');
 
 desktopDropdowns.forEach(dropdown => {
@@ -42,87 +35,40 @@ desktopDropdowns.forEach(dropdown => {
         if (dropdownMenu) {
             dropdownMenu.style.opacity = '0';
             dropdownMenu.style.visibility = 'hidden';
-            dropdownMenu.style.transform = 'translateY(-10px)';
+            dropdownMenu.style.transform = 'translateY(10px)';
         }
     });
 });
 
-// Слайдер
-class Slider {
-    constructor() {
-        this.slides = document.querySelectorAll('.slide');
-        this.dots = document.querySelectorAll('.dot');
-        this.prevBtn = document.querySelector('.slider-prev');
-        this.nextBtn = document.querySelector('.slider-next');
-        this.currentSlide = 0;
-        
-        if (this.slides.length > 0) {
-            this.init();
-        }
-    }
-    
-    init() {
-        if (this.prevBtn) {
-            this.prevBtn.addEventListener('click', () => this.prevSlide());
-        }
-        
-        if (this.nextBtn) {
-            this.nextBtn.addEventListener('click', () => this.nextSlide());
-        }
-        
-        this.dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => this.goToSlide(index));
-        });
-        
-        this.updateSlider();
-        
-        // Автопрокрутка каждые 5 секунд
-        this.interval = setInterval(() => this.nextSlide(), 5000);
-    }
-    
-    updateSlider() {
-        const wrapper = document.querySelector('.slider-wrapper');
-        if (wrapper) {
-            wrapper.style.transform = `translateX(-${this.currentSlide * 100}%)`;
-        }
-        
-        this.dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === this.currentSlide);
-        });
-        
-        this.slides.forEach((slide, index) => {
-            slide.classList.toggle('active', index === this.currentSlide);
-        });
-    }
-    
-    nextSlide() {
-        this.currentSlide = (this.currentSlide + 1) % this.slides.length;
-        this.updateSlider();
-    }
-    
-    prevSlide() {
-        this.currentSlide = (this.currentSlide - 1 + this.slides.length) % this.slides.length;
-        this.updateSlider();
-    }
-    
-    goToSlide(index) {
-        this.currentSlide = index;
-        this.updateSlider();
-    }
-}
+// ===== FAQ АККОРДЕОН =====
+const faqItems = document.querySelectorAll('.faq-item');
 
-// Форма с ВАШИМ Formspree URL и валидацией телефона
+faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    
+    question.addEventListener('click', () => {
+        // Закрываем все остальные вопросы
+        faqItems.forEach(otherItem => {
+            if (otherItem !== item) {
+                otherItem.classList.remove('active');
+            }
+        });
+        
+        // Открываем/закрываем текущий вопрос
+        item.classList.toggle('active');
+    });
+});
+
+// ===== ФОРМА ОБРАТНОЙ СВЯЗИ =====
 class ContactForm {
     constructor() {
         this.form = document.getElementById('contact-form');
         this.messageEl = document.getElementById('form-message');
         
         if (this.form) {
-            // ВАШ Formspree URL
-            this.formspreeUrl = 'https://formspree.io/f/meejqlzw';
+            // URL для тестирования формы (можно изменить на ваш сервис форм)
+            this.formspreeUrl = 'https://formspree.io/f/mvojgqza';
             this.init();
-            
-            // Инициализация маски для телефона
             this.initPhoneMask();
         }
     }
@@ -131,25 +77,20 @@ class ContactForm {
         this.form.addEventListener('submit', (e) => this.handleSubmit(e));
     }
     
-    // МАСКА ДЛЯ ТЕЛЕФОНА - запрещает буквы и форматирует номер
+    // МАСКА ДЛЯ ТЕЛЕФОНА
     initPhoneMask() {
         const phoneInput = document.getElementById('phone');
         if (!phoneInput) return;
         
-        // Обработчик ввода - форматирование в реальном времени
         phoneInput.addEventListener('input', function(e) {
-            // Удаляем всё кроме цифр
             let numbers = this.value.replace(/\D/g, '');
             
-            // Ограничиваем длину (11 цифр: 7 + 10)
             if (numbers.length > 11) {
                 numbers = numbers.substring(0, 11);
             }
             
-            // Форматируем номер
             let formatted = '';
             if (numbers.length > 0) {
-                // Если первая цифра 7 или 8, считаем это кодом страны
                 if (numbers.startsWith('7') || numbers.startsWith('8')) {
                     formatted = '+7';
                     if (numbers.length > 1) formatted += ' (' + numbers.substring(1, 4);
@@ -157,7 +98,6 @@ class ContactForm {
                     if (numbers.length >= 7) formatted += '-' + numbers.substring(7, 9);
                     if (numbers.length >= 9) formatted += '-' + numbers.substring(9, 11);
                 } else {
-                    // Иначе форматируем как российский номер без кода страны
                     formatted = '+7 (' + numbers.substring(0, 3);
                     if (numbers.length >= 3) formatted += ') ' + numbers.substring(3, 6);
                     if (numbers.length >= 6) formatted += '-' + numbers.substring(6, 8);
@@ -168,30 +108,17 @@ class ContactForm {
             this.value = formatted;
         });
         
-        // Запрещаем ввод букв через клавиатуру
+        // Запрещаем ввод букв
         phoneInput.addEventListener('keypress', function(e) {
-            // Разрешаем только цифры, Backspace, Delete, Tab, стрелки
             const allowedKeys = ['Backspace', 'Delete', 'Tab', 'ArrowLeft', 'ArrowRight', 'Home', 'End'];
             
             if (allowedKeys.includes(e.key)) {
-                return; // Разрешаем служебные клавиши
+                return;
             }
             
-            // Разрешаем только цифры
             if (!/\d/.test(e.key)) {
                 e.preventDefault();
             }
-        });
-        
-        // Обработчик вставки из буфера обмена
-        phoneInput.addEventListener('paste', function(e) {
-            e.preventDefault();
-            const pastedText = e.clipboardData.getData('text');
-            const numbers = pastedText.replace(/\D/g, '').substring(0, 11);
-            
-            // Устанавливаем значение и триггерим событие input для форматирования
-            this.value = numbers;
-            this.dispatchEvent(new Event('input'));
         });
     }
     
@@ -204,21 +131,12 @@ class ContactForm {
         submitBtn.textContent = 'Отправка...';
         submitBtn.disabled = true;
         
-        // Валидация телефона (если заполнен)
+        // Валидация телефона
         const phoneInput = document.getElementById('phone');
         if (phoneInput && phoneInput.value.trim() !== '') {
             const phoneNumbers = phoneInput.value.replace(/\D/g, '');
-            // Должно быть 10 или 11 цифр (11 если начинается с 7 или 8)
             if (phoneNumbers.length < 10 || phoneNumbers.length > 11) {
                 this.showMessage('Номер телефона должен содержать 10-11 цифр', 'error');
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-                return;
-            }
-            
-            // Если 11 цифр, проверяем что начинается с 7 или 8
-            if (phoneNumbers.length === 11 && !(phoneNumbers.startsWith('7') || phoneNumbers.startsWith('8'))) {
-                this.showMessage('Неверный формат номера телефона', 'error');
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
                 return;
@@ -228,6 +146,10 @@ class ContactForm {
         // Собираем данные формы
         const formData = new FormData(this.form);
         const data = Object.fromEntries(formData);
+        
+        // Добавляем дополнительную информацию
+        data._subject = 'Новая заявка с сайта Drupal-coder';
+        data._replyto = data.email;
         
         try {
             const response = await fetch(this.formspreeUrl, {
@@ -240,7 +162,7 @@ class ContactForm {
             });
             
             if (response.ok) {
-                this.showMessage('Форма успешно отправлена!', 'success');
+                this.showMessage('Заявка успешно отправлена! Наш менеджер свяжется с вами в течение 2 часов.', 'success');
                 this.form.reset();
             } else {
                 throw new Error('Ошибка отправки формы');
@@ -248,7 +170,6 @@ class ContactForm {
         } catch (error) {
             this.showMessage(`Ошибка: ${error.message}. Попробуйте еще раз.`, 'error');
         } finally {
-            // Возвращаем кнопку в исходное состояние
             submitBtn.textContent = originalText;
             submitBtn.disabled = false;
         }
@@ -260,7 +181,6 @@ class ContactForm {
             this.messageEl.className = type;
             this.messageEl.style.display = 'block';
             
-            // Скрываем сообщение через 5 секунд
             setTimeout(() => {
                 this.messageEl.style.display = 'none';
             }, 5000);
@@ -268,25 +188,8 @@ class ContactForm {
     }
 }
 
-// Инициализация при загрузке страницы
-document.addEventListener('DOMContentLoaded', () => {
-    // Инициализируем слайдер
-    new Slider();
-    
-    // Инициализируем форму
-    new ContactForm();
-    
-    // Закрываем мобильное меню при клике на ссылку
-    document.querySelectorAll('.mobile-menu a').forEach(link => {
-        link.addEventListener('click', () => {
-            if (mobileMenu) {
-                mobileMenu.classList.remove('active');
-                mobileMenuBtn.classList.remove('active');
-            }
-        });
-    });
-    
-    // Плавная прокрутка для якорных ссылок
+// ===== ПЛАВНАЯ ПРОКРУТКА =====
+function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
@@ -303,8 +206,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+}
+
+// ===== ИНИЦИАЛИЗАЦИЯ ПРИ ЗАГРУЗКЕ СТРАНИЦЫ =====
+document.addEventListener('DOMContentLoaded', () => {
+    // Инициализируем форму
+    new ContactForm();
     
-    // Проверка загрузки видео
+    // Инициализируем плавную прокрутку
+    initSmoothScroll();
+    
+    // Обработка ошибки видео
     const video = document.querySelector('.video-background');
     if (video) {
         video.addEventListener('error', () => {
@@ -314,108 +226,54 @@ document.addEventListener('DOMContentLoaded', () => {
                 'linear-gradient(135deg, #3498db, #2c3e50)';
         });
     }
+    
+    // Фиксированная навигация при скролле
+    window.addEventListener('scroll', () => {
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 100) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
 });
 
-// ... предыдущий код для меню и слайдера остается без изменений ...
-
-// Обновленный класс Form для выставки
-class ContactForm {
-    constructor() {
-        this.form = document.getElementById('contact-form');
-        this.messageEl = document.getElementById('form-message');
-        
-        if (this.form) {
-            this.formspreeUrl = 'https://formspree.io/f/meejqlzw';
-            this.init();
-            this.initPhoneMask();
-            this.initTicketSelection();
-            this.initDateRestrictions();
-            this.calculateTotal();
-        }
-    }
+// ===== ЗАПОЛНЕНИЕ ЧИСЛОВЫХ БЛОКОВ АНИМАЦИЕЙ =====
+function animateNumbers() {
+    const statNumbers = document.querySelectorAll('.stat-number');
     
-    init() {
-        this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+    statNumbers.forEach(stat => {
+        const target = parseInt(stat.textContent);
+        const increment = target / 50;
+        let current = 0;
         
-        // Обновляем итоговую цену при изменении
-        document.getElementById('quantity')?.addEventListener('change', () => this.calculateTotal());
-        document.getElementById('ticket-type')?.addEventListener('change', () => this.calculateTotal());
-    }
-    
-    // Инициализация выбора билетов
-    initTicketSelection() {
-        const ticketOptions = document.querySelectorAll('.ticket-option');
-        const ticketTypeSelect = document.getElementById('ticket-type');
-        
-        ticketOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                // Убираем активный класс у всех
-                ticketOptions.forEach(opt => opt.classList.remove('active'));
-                // Добавляем активный класс выбранному
-                option.classList.add('active');
-                
-                // Обновляем select
-                const ticketType = option.querySelector('h4').textContent.toLowerCase();
-                const price = option.dataset.price;
-                
-                if (ticketType.includes('стандартный')) {
-                    ticketTypeSelect.value = 'standard';
-                } else if (ticketType.includes('расширенный')) {
-                    ticketTypeSelect.value = 'extended';
-                } else if (ticketType.includes('vip')) {
-                    ticketTypeSelect.value = 'vip';
-                }
-                
-                this.calculateTotal();
-            });
-        });
-    }
-    
-    // Ограничение дат (15-30 декабря 2024)
-    initDateRestrictions() {
-        const dateInput = document.getElementById('date');
-        if (dateInput) {
-            // Устанавливаем минимальную и максимальную даты
-            dateInput.min = '2024-12-15';
-            dateInput.max = '2024-12-30';
-            
-            // Устанавливаем сегодняшнюю дату или ближайшую доступную
-            const today = new Date().toISOString().split('T')[0];
-            if (today >= '2024-12-15' && today <= '2024-12-30') {
-                dateInput.value = today;
-            } else {
-                dateInput.value = '2024-12-15';
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                current = target;
+                clearInterval(timer);
             }
-        }
-    }
-    
-    // Расчет итоговой стоимости
-    calculateTotal() {
-        const quantity = parseInt(document.getElementById('quantity')?.value || 1);
-        const ticketType = document.getElementById('ticket-type')?.value;
-        
-        let pricePerTicket = 500; // Стандартный по умолчанию
-        
-        if (ticketType === 'extended') {
-            pricePerTicket = 800;
-        } else if (ticketType === 'vip') {
-            pricePerTicket = 1200;
-        }
-        
-        const total = quantity * pricePerTicket;
-        const totalPriceEl = document.getElementById('total-price');
-        if (totalPriceEl) {
-            totalPriceEl.textContent = total + '₽';
-        }
-    }
-    
-    // ... остальные методы (initPhoneMask, handleSubmit, showMessage) остаются без изменений ...
+            stat.textContent = Math.floor(current) + (stat.textContent.includes('+') ? '+' : '');
+        }, 30);
+    });
 }
 
-// Инициализация при загрузке страницы
-document.addEventListener('DOMContentLoaded', () => {
-    new Slider();
-    new ContactForm();
-    
-    // ... остальной код инициализации ...
-});
+// Запускаем анимацию чисел при скролле
+const observerOptions = {
+    threshold: 0.5
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            animateNumbers();
+            observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+// Наблюдаем за секцией статистики
+const statsSection = document.querySelector('.stats');
+if (statsSection) {
+    observer.observe(statsSection);
+}
